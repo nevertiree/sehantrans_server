@@ -4,7 +4,7 @@
 		$mysql_server_name ='localhost';
 		$mysql_username='root';
 		$mysql_password='0512';
-		$mysql_database='php_homework';
+		$mysql_database='android';
 		//connect database
 		$database_connect=mysql_connect($mysql_server_name,$mysql_username,$mysql_password);
 		mysql_select_db($mysql_database);
@@ -14,7 +14,7 @@
 	function is_exist_name($username)
 	{
 		connect_mysql();
-		$select_query= 'select * from user_security_info where user_name =\''.$username.'\';';
+		$select_query= 'select * from testTable where user_name =\''.$username.'\';';
 		$result=mysql_query($select_query);
 		if (mysql_num_rows($result))
 			return ture;
@@ -26,7 +26,7 @@
 	function is_exist_user($username,$password)
 	{
 		connect_mysql();
-		$select_query= 'select * from user_security_info where user_name =\''.$username.'\' and user_password = \''.$password.'\';';
+		$select_query= 'select * from testTable where user_name =\''.$username.'\' and user_password = \''.$password.'\';';
 		$result=mysql_query($select_query);
 		if (mysql_num_rows($result))
 		{
@@ -34,7 +34,7 @@
 		}
 		else 
 			return false;
-		mysql_close($database_connect); 
+		mysql_close($database_connect);
 	}
 
 	function is_exist_answer($username,$answer)
