@@ -12,20 +12,22 @@ import java.io.PrintWriter;
  */
 public class HelloServlet extends HttpServlet {
 
-    public HelloServlet(){
-
-    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //super.doPost(request, response);
         System.out.println("处理get请求");
         PrintWriter printWriter = response.getWriter();
+        response.setContentType("text/html;charset=utf-8");
         printWriter.println("<strong>HelloServlet!</strong>");
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //super.doGet(request, response);
+        System.out.println("处理post请求");
+        PrintWriter printWriter = response.getWriter();
+        response.setContentType("text/html;charset=utf-8");
+        printWriter.println("<strong>HelloServlet!</strong>");
     }
 }

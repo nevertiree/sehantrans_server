@@ -11,6 +11,10 @@
     <title>第一个Servlet小例子</title>
   </head>
   <body>
-  <a href="/main/java/servlet/HelloServlet">Get方式请求</a>
+  <a href="main/java/servlet/HelloServlet">Get方式请求</a>
+
+  <form action="main/java/servlet/HelloServlet" method="post">
+    <input type="submit" value="Post方式请求">
+  </form>
   </body>
 </html>
