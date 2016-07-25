@@ -9,8 +9,8 @@ public interface UserinfoMapper {
     @Select({
             "select count(*)",
             "from userInfo",
-            "where name = {0}",
-            "and pwd = {1}"
+            "where name = #{0}",
+            "and pwd = #{1}"
     })
     @ResultType(Integer.class)
     int loginByPwd(String name, String pwd);

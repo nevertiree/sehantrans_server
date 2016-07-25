@@ -1,10 +1,15 @@
 package cn.nevertiree.business.user.userLogin;
 
+import com.google.gson.Gson;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Lance on 7/25/16.
@@ -15,9 +20,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/login")
 public class LoginController {
 
-   /* @Autowired
+    @Autowired
     LoginServiceIntf loginServiceIntf;
-*/
+
     //以password的手段登录（假设还有其他的手段）
     @RequestMapping(value = "/pwd",method = RequestMethod.GET)
     @ResponseBody
@@ -28,19 +33,17 @@ public class LoginController {
 
         System.out.println("name="+name);
 
-        /*//设置返回格式--》Map
+        //设置返回格式--》Map
         Map<String,Object> response=new HashMap<>();
 
         //如果以下函数返回true--》则success
         if (loginServiceIntf.loginByPwd(name,pwd)){
             response.put("success",true);
         }
-        else response.put("success",false);*/
+        else response.put("success",false);
 
         //把数据用GSON打包并返回
-        /*Gson gson=new Gson();
-        return gson.toJson(response);*/
-
-        return name;
+        Gson gson=new Gson();
+        return gson.toJson(response);
     }
 }
