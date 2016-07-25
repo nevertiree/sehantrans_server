@@ -55,18 +55,20 @@
 -->
     <!-- define the SqlSessionFactory -->
 
-    <!--<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="typeAliasesPackage" value="com.nostudy.domain" />
-        &lt;!&ndash; 所有配置的mapper文件 &ndash;&gt;
-        <property name="mapperLocations" value="classpath*:com/nostudy/domain/*.xml" />
-    </bean>
+        <!-- 所有配置的mapper文件 -->
+<!--
+        <property name="mapperLocations" value="classpath:cn/nevertiree/domain/*.xml" />
 -->
+        <property name="mapperLocations" value="classpath:cn/nevertiree/domain/*.xml" />
+
+    </bean>
 
     <!-- scan for mappers and let them be autowired -->
-   <!-- <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.nostudy.business.dao" />
-    </bean>
--->
 
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="cn.nevertiree.business.dao" />
+    </bean>
 </beans>
