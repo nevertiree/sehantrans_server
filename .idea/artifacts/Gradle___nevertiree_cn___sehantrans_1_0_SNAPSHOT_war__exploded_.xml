@@ -1,0 +1,83 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Gradle : nevertiree.cn : sehantrans-1.0-SNAPSHOT.war (exploded)">
+    <output-path>$PROJECT_DIR$/out/artifacts/sehantrans/exploded/sehantrans-1.0-SNAPSHOT.war</output-path>
+    <properties id="gradle-properties">
+      <options external-project-path="$PROJECT_DIR$" />
+    </properties>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="sehantrans/web/Web Gradle : sehantrans-1.0-SNAPSHOT.war" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="sehantrans" />
+          <element id="dir-copy" path="$PROJECT_DIR$/build/resources/main" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Gradle: javax.activation:activation:1.1" />
+          <element id="library" level="project" name="Gradle: aopalliance:aopalliance:1.0" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-jdbc:4.1.6.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-web:4.1.6.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-expression:4.1.6.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-core:4.1.6.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-beans:4.1.6.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.hamcrest:hamcrest-core:1.3" />
+          <element id="library" level="project" name="Gradle: javax.mail:mail:1.4.7" />
+          <element id="library" level="project" name="Gradle: org.mockito:mockito-all:1.9.5" />
+          <element id="library" level="project" name="Gradle: log4j:log4j:1.2.16" />
+          <element id="library" level="project" name="Gradle: org.mybatis.generator:mybatis-generator-core:1.3.2" />
+          <element id="library" level="project" name="Gradle: org.mybatis:mybatis-spring:1.2.2" />
+          <element id="library" level="project" name="Gradle: org.mybatis:mybatis:3.2.8" />
+          <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.6.0" />
+          <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.6.0" />
+          <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.6.0" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-test:4.1.6.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-context-support:4.1.6.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-context:4.1.6.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-tx:4.1.6.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-aop:4.1.6.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-orm:4.1.6.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-webmvc:4.1.6.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.aspectj:aspectjweaver:1.5.4" />
+          <element id="library" level="project" name="Gradle: javax.servlet:javax.servlet-api:3.0.1" />
+          <element id="library" level="project" name="Gradle: commons-logging:commons-logging:1.2" />
+          <element id="library" level="project" name="Gradle: org.json:json:20141113" />
+          <element id="library" level="project" name="Gradle: mysql:mysql-connector-java:5.1.34" />
+          <element id="library" level="project" name="Gradle: junit:junit:4.11" />
+          <element id="file-copy" path="$PROJECT_DIR$/libs/junit-4.11.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/libs/mysql-connector-java-5.1.34.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/libs/json-20141113.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/libs/commons-logging-1.2.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/libs/javax.servlet-api-3.0.1.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/libs/aspectjweaver-1.5.4.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/libs/spring-webmvc-4.1.6.RELEASE.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/libs/spring-orm-4.1.6.RELEASE.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/libs/spring-aop-4.1.6.RELEASE.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/libs/spring-tx-4.1.6.RELEASE.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/libs/spring-context-4.1.6.RELEASE.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/libs/spring-context-support-4.1.6.RELEASE.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/libs/spring-test-4.1.6.RELEASE.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/libs/jackson-core-2.6.0.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/libs/jackson-databind-2.6.0.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/libs/jackson-annotations-2.6.0.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/libs/mybatis-3.2.8.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/libs/mybatis-spring-1.2.2.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/libs/mybatis-generator-core-1.3.2.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/libs/log4j-1.2.16.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/libs/mockito-all-1.9.5.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/libs/mail-1.4.7.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/libs/servlet-api-2.4.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/libs/hamcrest-core-1.3.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/libs/spring-beans-4.1.6.RELEASE.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/libs/spring-core-4.1.6.RELEASE.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/libs/spring-expression-4.1.6.RELEASE.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/libs/spring-web-4.1.6.RELEASE.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/libs/spring-jdbc-4.1.6.RELEASE.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/libs/aopalliance-1.0.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/libs/activation-1.1.jar" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/out/artifacts/sehantrans/exploded/sehantrans-1.0-SNAPSHOT.war/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>
