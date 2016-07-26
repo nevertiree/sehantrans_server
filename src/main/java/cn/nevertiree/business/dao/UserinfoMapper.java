@@ -1,13 +1,16 @@
 package cn.nevertiree.business.dao;
 
+import cn.nevertiree.business.user.userRegister.RegisterNameRespVO;
 import cn.nevertiree.domain.Userinfo;
 import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.type.IntegerTypeHandler;
 
 public interface UserinfoMapper {
     /*********new method begin******/
 
+    //本法用于检查用户的名字和密码相互匹配
     @Select({
-            "select count(*)",
+            "select count(*) as no",
             "from userInfo",
             "where name = #{0}",
             "and pwd = #{1}"
@@ -15,6 +18,13 @@ public interface UserinfoMapper {
     @ResultType(Integer.class)
     int loginByPwd(String name, String pwd);
 
+    //本法用于再注册时判断用户民是否唯一
+    @Select({
+            "select count(*) from userInfo",
+            "where name = #{0}"
+    })
+    @ResultType(Integer.class)
+    int checkName(String name);
 
     /*********new method end******/
 
