@@ -5,7 +5,11 @@ package cn.nevertiree.business.user.userLogin;
  */
 public interface LoginServiceIntf {
 
-    //输入用户名和密码 判断是可以登录
-    public boolean loginByPwd(String name, String pwd);
+    public boolean checkName(String name);
+
+    //输入用户名和密码
+    public boolean checkPwd(String name, String pwd);
+
+    public boolean checkToken(String name,String token);
 
 }

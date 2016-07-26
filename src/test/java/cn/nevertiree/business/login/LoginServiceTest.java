@@ -13,10 +13,4 @@ public class LoginServiceTest {
     @Autowired
     LoginService loginService;
 
-    @Test
-    public void testLoginByPwd(){
-        boolean excepted = true;
-        boolean actual =loginService.loginByPwd("wlx","wlx");
-        Assert.assertEquals(excepted,actual);
-    }
 }

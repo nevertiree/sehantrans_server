@@ -1,6 +1,7 @@
 package cn.nevertiree.business.user.userRegister;
 
-import cn.nevertiree.business.dao.UserinfoMapper;
+import cn.nevertiree.business.dao.UsersecurityMapper;
+import cn.nevertiree.domain.Usersecurity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +12,10 @@ import org.springframework.stereotype.Service;
 public class RegisterService implements RegisterServiceIntf{
 
     @Autowired
-    UserinfoMapper userinfoMapper;
+    UsersecurityMapper usersecurityMapper;
 
     public boolean checkName(String name){
-        if (userinfoMapper.checkName(name)==0){
+        if (usersecurityMapper.checkName(name)==0){
             return true;
         }return false;
     }
