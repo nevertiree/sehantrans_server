@@ -12,7 +12,6 @@ CREATE TABLE IF NOT EXISTS `userSecurity` (
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE userBase(
-  no
-)ENGINE =InnoDB,
-CHARACTER SET =utf8
+#CREATE TABLE userBase(
+#)ENGINE =InnoDB,
+#CHARACTER SET =utf8

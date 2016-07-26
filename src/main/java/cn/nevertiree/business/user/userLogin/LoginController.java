@@ -24,7 +24,7 @@ public class LoginController {
     LoginServiceIntf loginServiceIntf;
 
     //以password的手段登录（假设还有其他的手段）
-    @RequestMapping(value = "/common",method = RequestMethod.GET)
+    @RequestMapping(value = "/common",method = RequestMethod.POST)
     @ResponseBody
     public String loginByPwd(LoginPwdVO pwdVO){
         //解析VO用户名 密码 和TOKEN
