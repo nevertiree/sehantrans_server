@@ -29,8 +29,8 @@ public class LoginController {
     public String loginByPwd(LoginPwdVO pwdVO){
         //解析VO用户名 密码 和TOKEN
         String name = pwdVO.getName();
-        String pwd=pwdVO.getPwd();
-        String token=pwdVO.getToken();
+        String pwd  = pwdVO.getPwd();
+        String token= pwdVO.getToken();
 
         Gson gson=new Gson();
         //todo 返回值JSON如下

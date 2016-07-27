@@ -25,14 +25,20 @@ public class RegisterController {
     RegisterServiceIntf registerServiceIntf;
 
     /*
-    * 我的想法
-    * todo 1.运用类似AJAX的方法
-    * 先测试用户名是否重复(与服务器合作) return "success:true or false"
-    * 再测试用户的密码是否过于简单(客户端本地用正则测试)
-    * 两个测试都成功的情况下再发送注册信息
-    * todo 2.向服务器发送信息
-    *
-    * todo 3.服务器返回反馈--》完成注册
+    TODO 1 邮箱
+
+        正则表达式检验字符串是否符合邮箱规范
+
+        检查该邮箱是否已经注册过，如果没有就发送激活邮件，否则报错
+
+    TODO 2 密码
+
+        密码长度至少六位而且必须而且只能含英文与数字
+
+    TODO 3.服务器完成注册
+
+        在userSecurity和userBase中insert邮箱密码ID和默认用户名
+
     * */
 
     //根据用户名注册的时候判断是否重名
