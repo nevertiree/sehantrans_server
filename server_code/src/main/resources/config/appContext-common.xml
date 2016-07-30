@@ -20,13 +20,16 @@
         <property name="supportedMediaTypes" value="application/json" />
     </bean>
 
+    <!--引入配置文件-->
     <bean id="propertyPlaceholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
-                <value>file:config/mysql.properties</value>
+                <!--MySQL配置文件-->
+                <value>file:config/mysql.properties</value><!---->
             </list>
         </property>
     </bean>
+
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="${mysql.driver}"></property>
@@ -40,10 +43,13 @@
         <property name="dataSource" ref="dataSource" />
     </bean>
 
-    <!-- 启动包扫描功能，以便注册带有@Controller、@Service、@repository、@Component等注解的类成为spring的bean -->
+    <!--使用基于注解的自动装配，一旦配置完成，就可以对代码添加注解-->
+    <context:annotation-config />
+
+    <!-- 扫描指定的包及其所有的子包，并查找出能够自动注册为Bean的类-->
+    <!--该标记使用构造型注解所标记的类 @Component @Controller @Repository @Service-->
     <context:component-scan base-package="cn.nevertiree.business" />
 
-    <context:annotation-config />
 
     <tx:annotation-driven />
 

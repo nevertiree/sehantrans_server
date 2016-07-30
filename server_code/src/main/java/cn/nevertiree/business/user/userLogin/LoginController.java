@@ -15,8 +15,10 @@ import java.util.Map;
  * Created by Lance on 7/25/16.
  */
 
-@Scope("prototype")
+@Scope("prototype")//每次调用都创建完全不一样的实例
+
 @Controller
+
 @RequestMapping("/login")
 public class LoginController {
 
@@ -25,6 +27,7 @@ public class LoginController {
 
     //以password的手段登录（假设还有其他的手段）
     @RequestMapping(value = "/common",method = RequestMethod.POST)
+
     @ResponseBody
     public String loginByPwd(LoginPwdVO pwdVO){
         //解析VO用户名 密码 和TOKEN
