@@ -20,11 +20,19 @@
         <property name="supportedMediaTypes" value="application/json" />
     </bean>
 
+    <bean id="propertyPlaceholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>file:config/mysql.properties</value>
+            </list>
+        </property>
+    </bean>
+
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-        <property name="url" value="jdbc:mysql://localhost:3306/sehantrans"></property>
-        <property name="username" value="root"></property>
-        <property name="password" value="0512"></property>
+        <property name="driverClassName" value="${mysql.driver}"></property>
+        <property name="url" value="${mysql.url}"></property>
+        <property name="username" value="${mysql.username}"></property>
+        <property name="password" value="${mysql.password}"></property>
     </bean>
 
     <!-- transaction manager, use JtaTransactionManager for global tx -->
@@ -32,26 +40,12 @@
         <property name="dataSource" ref="dataSource" />
     </bean>
 
-    <!-- enable component scanning (beware that this does not enable mapper scanning!) -->
     <!-- 启动包扫描功能，以便注册带有@Controller、@Service、@repository、@Component等注解的类成为spring的bean -->
     <context:component-scan base-package="cn.nevertiree.business" />
 
-    <!-- enable autowire -->
     <context:annotation-config />
 
-    <!-- enable transaction demarcation with annotations -->
     <tx:annotation-driven />
-
-    <!-- 自定义上传用户信息以及头像的bean -->
-    <!-- 配置MultipartResolver 用于文件上传 使用spring的CommosMultipartResolver -->
-    <!--<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
-                p:defaultEncoding="UTF-8"
-                p:maxUploadSize="5400000"
-                p:uploadTempDir="fileUpload/temp"
-            >
-    </bean>
--->
-    <!-- define the SqlSessionFactory -->
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
