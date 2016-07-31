@@ -56,7 +56,7 @@ public class SettingController {
             response.put("siteInfo",settingServiceIntf.getUserSite(userNo));
         }
 
-        //返回JSON字符串
+        //把返回值变成JSON字符串
         return gson.toJson(response);
     }
 
