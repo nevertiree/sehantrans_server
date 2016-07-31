@@ -27,6 +27,33 @@
         <property name="password" value="0512"></property>
     </bean>
 
+    <!--设定destroy-method=”close”属性， 以便Spring容器关闭时，数据源能够正常关闭。-->
+    <!--<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+        &lt;!&ndash;驱动的名字&ndash;&gt;
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+        &lt;!&ndash;数据库的url&ndash;&gt;
+        <property name="url" value="jdbc:mysql://localhost:3306/sehantrans"></property>
+        &lt;!&ndash;用户名&ndash;&gt;
+        <property name="username" value="root"></property>
+        &lt;!&ndash;密码&ndash;&gt;
+        <property name="password" value="0512"></property>
+        &lt;!&ndash;设置从数据源中返回的连接是否采用自动提交机制，默认值为 true&ndash;&gt;
+        <property name="defaultAutoCommit" value="true"/>
+        &lt;!&ndash;设置数据源是否仅能执行只读操作， 默认值为 false&ndash;&gt;
+        <property name="defaultReadOnly" value="false"/>
+        &lt;!&ndash;最大连接数据库连接数，设置为0时，表示没有限制&ndash;&gt;
+        <property name="maxTotal" value="0"/>
+        &lt;!&ndash;最大等待连接中的数量，设置为0时，表示没有限制&ndash;&gt;
+        <property name="maxIdle" value="0"/>
+        &lt;!&ndash;最大等待秒数，单位为毫秒， 超过时间会报出错误信息&ndash;&gt;
+        <property name="maxWaitMillis" value="100000"/>
+        &lt;!&ndash;用于验证连接是否成功的查询SQL语句，SQL语句必须至少要返回一行数据&ndash;&gt;
+        <property name="validationQuery" value="1"/>
+        &lt;!&ndash;removeAbandoned：是否自我中断，默认是 false ；
+        removeAbandonedTimeout：几秒后数据连接会自动断开，在removeAbandoned为true，提供该值；
+        logAbandoned：是否记录中断事件， 默认为 false；&ndash;&gt;
+    </bean>-->
+
     <!-- transaction manager, use JtaTransactionManager for global tx -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
@@ -42,20 +69,11 @@
     <!-- enable transaction demarcation with annotations -->
     <tx:annotation-driven />
 
-    <!-- 自定义上传用户信息以及头像的bean -->
-    <!-- 配置MultipartResolver 用于文件上传 使用spring的CommosMultipartResolver -->
-    <!--<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
-                p:defaultEncoding="UTF-8"
-                p:maxUploadSize="5400000"
-                p:uploadTempDir="fileUpload/temp"
-            >
-    </bean>
--->
     <!-- define the SqlSessionFactory -->
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="typeAliasesPackage" value="com.nostudy.domain" />
+        <property name="typeAliasesPackage" value="cn.nevertiree.domain" />
         <!-- 所有配置的mapper文件 -->
         <property name="mapperLocations" value="classpath*:cn/nevertiree/domain/*.xml" />
     </bean>
