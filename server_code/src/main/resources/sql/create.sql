@@ -1,8 +1,8 @@
 USE sehantrans;
 
 #全国地理信息
-DROP TABLE IF EXISTS map;
-CREATE TABLE  map (
+DROP TABLE IF EXISTS chinaMap;
+CREATE TABLE  chinaMap (
   `no` int(10) NOT NULL COMMENT 'ID',
   `name` varchar(50) NOT NULL COMMENT '栏目名',
   `parentid` int(10) NOT NULL COMMENT '父栏目',
@@ -26,4 +26,14 @@ CREATE TABLE IF NOT EXISTS userSite(
   county   VARCHAR(32) NOT NULL DEFAULT "未知",
   district VARCHAR(32) NOT NULL DEFAULT "未知",
   street   VARCHAR(64) NOT NULL DEFAULT "未知"
+)CHARACTER SET =utf8;
+
+#用户的基本信息
+CREATE TABLE IF NOT EXISTS userBaseInfo(
+  no             VARCHAR(16) PRIMARY KEY ,
+  name           VARCHAR(16) NOT NULL ,
+  gender         SET("男","女","保密"),
+  birth          DATETIME ,
+  mobile         MEDIUMINT,
+  registerTime   DATETIME DEFAULT now()
 )CHARACTER SET =utf8;
