@@ -20,4 +20,12 @@ public class SettingService implements SettingServiceIntf {
         return usersiteMapper.getUserSite(userNo);
     }
 
+    //根据用户No查询Usersite中符合条件的条数
+    public boolean checkByNo(String userNo){
+        if (usersiteMapper.checkByNo(userNo)==0){
+            return false;
+        }
+        return true;
+    }
+
 }

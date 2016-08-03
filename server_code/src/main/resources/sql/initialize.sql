@@ -7,6 +7,10 @@ SELECT no,province,city,county,district,street from userSite where no="00001";
 
 SELECT no,province,city,county,district,street from userSite where no="1";
 
+SELECT count(*) from userSite where no="1";
+
+SELECT count(*) from userSite where no="1asdfas";
+
 ALTER TABLE map RENAME chinaMap
 
 use sehantrans;

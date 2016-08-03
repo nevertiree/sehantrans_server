@@ -5,6 +5,8 @@ package cn.nevertiree.business.user.userSetting;
  */
 public interface SettingServiceIntf {
 
-    public UserSiteVO getUserSite(String userNo);
+    UserSiteVO getUserSite(String userNo);
+
+    boolean checkByNo(String userNo);
 
 }

@@ -17,47 +17,40 @@ import java.util.Map;
 
 @Scope("prototype")
 @Controller
-@RequestMapping(value = "/setting")
+@RequestMapping("/setting")
 public class SettingController {
 
     @Autowired
     SettingServiceIntf settingServiceIntf;
 
-    //设置用户的地址信息
-    @RequestMapping(value = "/setSite",method = RequestMethod.GET)
-    @ResponseBody
-    public void setUserSite(UserSiteVO site){
-        String userNo=site.getNo();
-        String province =site.getProvince();
-        String city=site.getCity();
-        String county=site.getCounty();
-        String district=site.getDistrict();
-        String street=site.getStreet();
-
-    }
-
     //根据用户No取得该用户的地址信息
-    @RequestMapping(value = "/getSite",method = RequestMethod.GET)
+    @RequestMapping(value = "/getsite",method = RequestMethod.GET)
     @ResponseBody
-    public String getUserSite(UserSiteVO userSiteVO){
+    public String getUserSite(UserSiteVO siteVO){
         //取得用户ID
-        String userNo= userSiteVO.getNo();
+        String id= siteVO.getNo();
 
         //准备返回值
-        Map response = new HashMap();
         Gson gson= new Gson();
+        Map<String,Object> response=new HashMap<>();
 
         //如果数据库返回值为空 返回false
-        if (settingServiceIntf.getUserSite(userNo)==null){
+        if (!settingServiceIntf.checkByNo(id)){
             response.put("success",false);
             response.put("msg","username is not found");
-        }else{//在Map中插入返回的UserSiteVO
-            response.put("success",true);
-            response.put("siteInfo",settingServiceIntf.getUserSite(userNo));
+            //把返回值变成JSON字符串
+            System.out.println(gson.toJson(response)+id+settingServiceIntf.checkByNo(id));
+            return gson.toJson(response)+id+settingServiceIntf.checkByNo(id);
+
         }
 
+        //在Map中插入返回的UserSiteVO
+        response.put("success",true);
+        response.put("siteInfo",settingServiceIntf.getUserSite(id));
         //把返回值变成JSON字符串
-        return gson.toJson(response);
+        System.out.println(gson.toJson(response)+id+settingServiceIntf.checkByNo(id));
+        return gson.toJson(response)+id+settingServiceIntf.checkByNo(id);
+
     }
 
 }
