@@ -99,8 +99,6 @@ public class SettingController {
     @ResponseBody
     public String updateBaseInfo(Userbaseinfo baseInfo){
 
-        
-
         Map<String,Object> response = new HashMap<>();
 
         //TODO 更新的时候可以直接使用原生的updateByPrimaryKey方法
