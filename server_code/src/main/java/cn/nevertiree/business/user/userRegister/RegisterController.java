@@ -1,5 +1,8 @@
 package cn.nevertiree.business.user.userRegister;
 
+import cn.nevertiree.business.dvo.UserSecurityVO;
+import cn.nevertiree.common.UserNoGenerator;
+import cn.nevertiree.domain.Usersecurity;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -41,21 +44,43 @@ public class RegisterController {
 
     * */
 
-    //根据用户名注册的时候判断是否重名
-    @RequestMapping(value = "/checkName" ,method = RequestMethod.GET)
+    //根据用户名注册的时候判断是否重名(这里的name是广义的)
+    @RequestMapping(value = "/create" ,method = RequestMethod.GET)
     @ResponseBody
-    public String checkName(RegisterNameParamVO registerNameParamVO){
-        //得到用户想要注册的用户名
-        String name = registerNameParamVO.getName();
+    public String createUser(RegisterVO registerVO){
+        //得到用户想要注册的用户名和M密码
+        String name = registerVO.getName();
+        String pwd  = registerVO.getPwd();
 
-        Map<String,Object> response = new HashMap<>();
+        Map<String,Object> response = new HashMap<String,Object>();
+        Gson gson= new Gson();
 
-        if (registerServiceIntf.checkName(name)==true){
+        // TODO: 8/4/16
+        // 200表示成功
+        // 201表示重名
+        // 202表示数据库插入失败
+
+        if (registerServiceIntf.checkName(name)){
             response.put("success",true);
         }else
+        {
             response.put("success",false);
+            response.put("msg",201);
+            return gson.toJson(response);
+        }
 
-        Gson gson= new Gson();
+        //得到唯一的userNo
+        String no = UserNoGenerator.getUserNo(name);
+
+        //开始建立用户的信息row（在3张表中同时建立）
+        if (registerServiceIntf.createUser(no,name,pwd)){
+            response.put("success",true);
+            response.put("msg",200);
+        }else{
+            response.put("success",false);
+            response.put("msg" , 202);
+        }
+
         return gson.toJson(response);
     }
 

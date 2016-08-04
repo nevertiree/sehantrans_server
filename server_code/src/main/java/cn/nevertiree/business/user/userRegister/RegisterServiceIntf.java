@@ -5,6 +5,7 @@ package cn.nevertiree.business.user.userRegister;
  */
 public interface RegisterServiceIntf {
 
-    public boolean checkName(String name);
+    boolean checkName(String name);
 
+    boolean createUser(String no, String name , String pwd);
 }

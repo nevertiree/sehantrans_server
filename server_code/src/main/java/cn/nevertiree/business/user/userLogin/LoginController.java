@@ -40,7 +40,7 @@ public class LoginController {
         //     100(username isn't existed)
         //     200(username is existed but password or username is wrong)
         //     300(username and password are right but login in strange device)
-        Map<String,Object> response=new HashMap<>();
+        Map<String,Object> response=new HashMap<String,Object>();
 
         // TODO: 验证用户名-token和用户名-密码
 

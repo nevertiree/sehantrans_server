@@ -30,7 +30,7 @@ public class SettingController {
     public String getSiteInfo(String no){
 
         //使用Map输出结果
-        Map<String,Object> response = new HashMap<>();
+        Map<String,Object> response = new HashMap<String,Object>();
 
         //根据数据库中的存在情况设置返回map
         if (settingServiceIntf.getSiteInfo(no)==null){
@@ -52,7 +52,7 @@ public class SettingController {
     @ResponseBody
     public String updateSite(Usersite siteVO){
 
-        Map<String,Object> response = new HashMap<>();
+        Map<String,Object> response = new HashMap<String,Object>();
 
         //TODO 更新的时候可以直接使用原生的updateByPrimaryKey方法
         if (settingServiceIntf.updateSiteInfo(siteVO)){
@@ -78,7 +78,7 @@ public class SettingController {
     public String getBaseInfo(String no){
 
         //准备用户返回的Map
-        Map<String,Object> response = new HashMap<>();
+        Map<String,Object> response = new HashMap<String,Object>();
 
         if (settingServiceIntf.getBaseInfo(no)!=null){
             response.put("success",true);
@@ -99,7 +99,7 @@ public class SettingController {
     @ResponseBody
     public String updateBaseInfo(Userbaseinfo baseInfo){
 
-        Map<String,Object> response = new HashMap<>();
+        Map<String,Object> response = new HashMap<String,Object>();
 
         //TODO 更新的时候可以直接使用原生的updateByPrimaryKey方法
         

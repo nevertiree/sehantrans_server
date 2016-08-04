@@ -23,6 +23,11 @@ dependencies {
 }
 
 //Spring官网gradle选项里提供的依赖包代码
+
+task copyJars(type: Copy) {
+    from(configurations.runtime)
+    into 'libs' // 目标位置
+}
 dependencies {
     compile(
             "mysql:mysql-connector-java:5.1.34",
@@ -48,23 +53,19 @@ dependencies {
     )
     compile group: 'com.google.code.gson', name: 'gson', version: '2.7'
 
-    //Redis数据库套装
-    //compile group: 'redis.clients', name: 'jedis', version: '2.9.0'
-    //compile group: 'org.springframework.data', name: 'spring-data-redis', version: '1.7.2.RELEASE'
+
     //汉字转成拼音的包
     compile group: 'com.belerweb', name: 'pinyin4j', version: '2.5.1'
 
     //用于管理mysql链接池
     compile group: 'commons-io', name: 'commons-io', version: '2.5'
 
-    //servlet必须设置成providedCompile
     // https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2
     compile group: 'org.apache.commons', name: 'commons-dbcp2', version: '2.1.1'
 
+    //servlet必须设置成providedCompile
+    providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.0.1'
 
-}
 
-task copyJars(type: Copy) {
-    from(configurations.runtime)
-    into 'libs' // 目标位置
+
 }

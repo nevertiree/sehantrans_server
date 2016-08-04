@@ -1,11 +1,5 @@
 package cn.nevertiree.common;
 
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.DigestUtils;
-
-import javax.xml.crypto.Data;
-import javax.xml.crypto.dsig.DigestMethod;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;

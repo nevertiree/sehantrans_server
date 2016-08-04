@@ -21,3 +21,5 @@ INSERT INTO userBaseInfo (no,name,gender,birth,mobile) VALUE ("00001","王凌霄
 select * from userBaseInfo;
 
 DESC userBaseInfo;
+
+DESC userSecurity;

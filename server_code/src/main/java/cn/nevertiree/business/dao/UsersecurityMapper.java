@@ -45,6 +45,13 @@ public interface UsersecurityMapper {
     int updateToken(String name,String token);
 
 
+    //创建新用户
+    @Insert({
+            "insert into UserSecurity (no,name,pwd)",
+            "values(#{0},#{1},#{2})"
+    })
+    int createUser(String no ,String name ,String pwd);
+
     /*********new method end******/
 
 

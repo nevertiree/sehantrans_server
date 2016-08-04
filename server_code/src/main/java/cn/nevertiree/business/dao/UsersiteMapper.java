@@ -1,13 +1,16 @@
 package cn.nevertiree.business.dao;
 
-import cn.nevertiree.business.user.userSetting.UserSiteVO;
 import cn.nevertiree.domain.Usersite;
 import org.apache.ibatis.annotations.*;
 
 public interface UsersiteMapper {
     /*****************新方法***开始处*****2016-07-31***********************************/
 
-
+    @Insert({
+            "insert into UserBaseInfo (no)",
+            "values( #{0} )"
+    })
+    int createUser(String no);
 
     /*****************新方法***结束处*****2016-07-31***********************************/
 
