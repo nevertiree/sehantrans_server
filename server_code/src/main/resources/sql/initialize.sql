@@ -15,3 +15,5 @@ ALTER TABLE map RENAME chinaMap
 
 use sehantrans;
 show tables;
+
+DESC userBaseInfo;

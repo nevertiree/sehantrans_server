@@ -7,22 +7,7 @@ import org.apache.ibatis.annotations.*;
 public interface UsersiteMapper {
     /*****************新方法***开始处*****2016-07-31***********************************/
 
-    @Select({
-            "select",
-            "no, province, city, county, district, street",
-            "from userSite",
-            "where no = #{0}"
-    })
-    @ResultMap("BaseResultMap")
-//    @ResultType(UserSiteVO.class)
-    UserSiteVO getUserSite(String no);
 
-    @Select({
-            "select count(*) from userSite",
-            "where no = #{0}"
-    })
-    @ResultType(Integer.class)
-    int checkByNo(String no);
 
     /*****************新方法***结束处*****2016-07-31***********************************/
 
