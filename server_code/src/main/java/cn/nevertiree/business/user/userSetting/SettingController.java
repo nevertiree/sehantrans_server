@@ -98,9 +98,14 @@ public class SettingController {
     @RequestMapping(value = "updatebaseinfo" ,method = RequestMethod.GET)
     @ResponseBody
     public String updateBaseInfo(Userbaseinfo baseInfo){
+
+        
+
         Map<String,Object> response = new HashMap<>();
 
         //TODO 更新的时候可以直接使用原生的updateByPrimaryKey方法
+        
+        //// TODO: 8/4/16 貌似u不可以这么简单粗暴--可以用MyBatis事务 
         if (settingServiceIntf.updateBaseInfo(baseInfo)){
             response.put("success",true);
             response.put("msg",200);

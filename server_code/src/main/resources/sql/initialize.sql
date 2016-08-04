@@ -16,4 +16,8 @@ ALTER TABLE map RENAME chinaMap
 use sehantrans;
 show tables;
 
+INSERT INTO userBaseInfo (no,name,gender,birth,mobile) VALUE ("00001","王凌霄","男","1996-09-26","189");
+
+select * from userBaseInfo;
+
 DESC userBaseInfo;
