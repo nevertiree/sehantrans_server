@@ -1,13 +1,10 @@
 package cn.nevertiree.business.user.userRegister;
 
-import cn.nevertiree.business.dvo.UserSecurityVO;
-import cn.nevertiree.common.UserNoGenerator;
-import cn.nevertiree.domain.Usersecurity;
+import cn.nevertiree.common.IdGenerator;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -57,7 +54,7 @@ public class RegisterController {
 
         // TODO: 8/4/16
         // 200表示成功
-        // 201表示重名
+        // 201表示注册方式重复 name是广义的 包括用于注册的邮箱电话等等
         // 202表示数据库插入失败
 
         if (registerServiceIntf.checkName(name)){
@@ -70,7 +67,7 @@ public class RegisterController {
         }
 
         //得到唯一的userNo
-        String no = UserNoGenerator.getUserNo(name);
+        String no = IdGenerator.getHashId(name);
 
         //开始建立用户的信息row（在3张表中同时建立）
         if (registerServiceIntf.createUser(no,name,pwd)){

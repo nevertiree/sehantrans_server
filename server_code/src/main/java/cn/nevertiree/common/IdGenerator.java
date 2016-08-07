@@ -10,9 +10,9 @@ import java.util.Random;
  * Created by Lance on 7/26/16.
  */
 
-//本方法用与生成用户ID
+//本方法用与生成各种各样的ID
 
-public class UserNoGenerator {
+public class IdGenerator {
 
     //把数据通过SHA-512加密算法 得到byte密文
     public static byte[] sha(String message){
@@ -59,8 +59,8 @@ public class UserNoGenerator {
         return stringBuffer.toString();
     }
 
-    //混合用户的name和注册时间以及一串随机字符-->用户的username+注册当天的日期+随机的一串字符串=id盐
-    public static String getOriginName(String name){
+    //返回初始值和注册时间以及一串随机字符
+    public static String getOriginId(String name){
         //用户注册日
         String date = (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(new Date());
 
@@ -69,17 +69,15 @@ public class UserNoGenerator {
 
         //没有加密过的No
         return name+date+randomValue;
-
     }
 
-    //把id盐通过SHA-1算法处理生成数字签名
-    //取数字签名的前16位生成userno
-    public static String getUserNo(String name){
+    //把初始的值通过SHA-512算法处理生成唯一的64位数字签名
+    public static String getHashId(String name){
         //取的混合name
-        String originName = getOriginName(name);
+        String originName = getOriginId(name);
         //取的加密后的混合name
         String encodeName = convertByteToHexString(sha(originName));
         //取前16位
-        return encodeName.substring(0,15);
+        return encodeName.substring(0,63);
     }
 }

@@ -78,14 +78,5 @@
         <location>/WEB-INF/exception.jsp</location>
     </error-page>
     -->
-    <!-- spring integrate hibernate usage, can be removed now. -->
-    <!--<filter>-->
-        <!--<filter-email>SpringOpenSessionInViewFilter</filter-email>-->
-        <!--<filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>-->
-    <!--</filter>-->
-    <!--<filter-mapping>-->
-        <!--<filter-email>SpringOpenSessionInViewFilter</filter-email>-->
-        <!--<url-pattern>/*</url-pattern>-->
-    <!--</filter-mapping>-->
 
 </web-app>

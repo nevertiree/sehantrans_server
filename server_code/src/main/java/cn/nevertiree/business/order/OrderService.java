@@ -1,4 +1,4 @@
-package cn.nevertiree.business.orderManage;
+package cn.nevertiree.business.order;
 
 /**
  * Created by Lance on 8/7/16.
