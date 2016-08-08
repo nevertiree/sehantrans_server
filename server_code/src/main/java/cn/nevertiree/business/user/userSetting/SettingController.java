@@ -1,8 +1,10 @@
 package cn.nevertiree.business.user.userSetting;
 
+import cn.nevertiree.common.JsonUtil;
 import cn.nevertiree.domain.Userbaseinfo;
 import cn.nevertiree.domain.Usersite;
 import com.google.gson.Gson;
+import com.sun.imageio.plugins.common.ImageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Scope;
@@ -26,6 +28,10 @@ public class SettingController {
 
     @Autowired
     SettingServiceIntf settingServiceIntf;
+
+    //用于处理用户头像和个人介绍等等存储在文件系统的类
+    @Autowired
+    SettingPersonServiceIntf settingPersonServiceIntf;
 
     //根据no获取用户的地址信息
     @RequestMapping(value = "/getsite" ,method = RequestMethod.GET)
@@ -123,99 +129,100 @@ public class SettingController {
     @RequestMapping(value = "getUserPortait" ,method = RequestMethod.GET)
     @ResponseBody
     public String getUserPortait(String no){
-        return "";
+
+        //准备用于返回JSON信息的Map
+        Map<String,Object> response = new HashMap<String,Object>();
+
+        //取得从文件系统读取的该用户照片byte流
+        File portait = settingPersonServiceIntf.getUserPortait(no);
+
+        //如果byte数组长度为0，说明读取失败
+        if (portait==null){
+            response.put("success",false);
+            response.put("msg",000);
+        }else {
+            response.put("success",true);
+            response.put("msg",001);
+            response.put("portait",portait);
+        }
+
+        //放回一串JSON信息
+        return JsonUtil.toJson(response);
     }
 
-    //更新用户的头像
+    //更新用户的头像--传入用户的no和用户相片的File文件，把File写入文件系统，并且在数据库记录位置
     @RequestMapping(value = "updateUserPortait" ,method = RequestMethod.GET)
     @ResponseBody
-    public String updateUserPortait(String no,String bytes){
-        //传入用户的no和用户相片的二进制文件，把二进制内容写入文件系统，并且在数据库记录位置
-        return "";
+    public String updateUserPortait(String no,File portaitFile){
+        //准备用于返回JSON信息的Map
+        Map<String,Object> response = new HashMap<String,Object>();
+
+        //把客户端传递的byte[]输送到接口
+        boolean result = settingPersonServiceIntf.updateUserPortait(no,portaitFile);
+
+        //如果接口返回失败，说明存储失败
+        if (!result){
+            response.put("success",false);
+            response.put("msg",000);
+        }else
+        {
+            response.put("success",true);
+            response.put("msg",001);
+        }
+
+        //放回一串JSON信息
+        return JsonUtil.toJson(response);
+
     }
 
     //获取用户的个人简介
-    @RequestMapping(value = "getUserIntroduction" ,method = RequestMethod.GET)
+    @RequestMapping(value = "getUserIntroduction" ,method = RequestMethod.POST)
     @ResponseBody
     public String getUserIntroduction(String no){
 
-        //设置同一的编码
-        String encoding = "utf8";
+        //准备用于返回JSON信息的Map
+        Map<String,Object> response = new HashMap<String,Object>();
 
+        //取得从文件系统读取的该用户照片byte流
+        byte[] introduction = settingPersonServiceIntf.getUserIntroduction(no);
 
-        // TODO: 8/8/16 filePath应该从database中读
-
-        //设置存储介绍的txt文件位置
-        String filePath = "var/www/data/introduction/"+no+".txt";
-        //更新或者创建该文件
-        File file = new File(filePath);
-        //如果已经存在txt就删除它
-        if (file.exists())  file.delete();
-        //创建新的文件
-        try {
-            file.createNewFile();
-        }catch (IOException e){
-            e.printStackTrace();
+        //如果byte数组长度为0，说明读取失败
+        if (introduction.length==0){
+            response.put("success",false);
+            response.put("msg",000);
+        }else
+        {
+            response.put("success",true);
+            response.put("msg",001);
+            response.put("introduction",introduction);
         }
 
-        //创建并且初始化输入流
-        InputStream input = null;
-        try {
-            input = new FileInputStream(file);
-        }catch (FileNotFoundException e){
-            e.printStackTrace();
-        }
-
-        //开辟一个空间用于接受文件读进来的数据
-        byte bytes[] = new byte[];
-
-        return "";
+        //放回一串JSON信息
+        return JsonUtil.toJson(response);
     }
 
     //更新用户的个人简介--传入用户的no和用户简介，把个人简介写入文件系统，并且在数据库记录位置
-    @RequestMapping(value = "updateUserIntroduction" ,method = RequestMethod.GET)
+    @RequestMapping(value = "updateUserIntroduction" ,method = RequestMethod.POST)
     @ResponseBody
-    public String updateUserIntroduction(String no,String introduction){
-        //设置存储介绍的txt文件位置
-        String filePath = "var/www/data/introduction/"+no+".txt";
-        //更新或者创建该文件
-        File file = new File(filePath);
-        //如果已经存在txt就删除它
-        if (file.exists())  file.delete();
-        //创建新的文件
-        try {
-            file.createNewFile();
-        }catch (IOException e){
-            e.printStackTrace();
+    public String updateUserIntroduction(String no,byte[] introduction){
+
+        //准备用于返回JSON信息的Map
+        Map<String,Object> response = new HashMap<String,Object>();
+
+        //把客户端传递的byte[]输送到接口
+        boolean result = settingPersonServiceIntf.updateUserIntroduction(no,introduction);
+
+        //如果接口返回失败，说明存储失败
+        if (!result){
+            response.put("success",false);
+            response.put("msg","asdf");
+        }else {
+            response.put("success",true);
+            response.put("msg",001);
         }
 
-        //创建并且初始化输出流
-        OutputStream out = null;
-        try {
-            out = new FileOutputStream(file);
-        }catch (IOException e1){
-            e1.printStackTrace();
-        }
-
-        //把个人介绍的字符串转化成byte[]
-        byte bytes[] = introduction.getBytes();
-
-        //把byte数组写入到文件之中
-        try {
-            out.write(bytes);
-        }catch (IOException e2){
-            e2.printStackTrace();
-        }
-
-        //关闭读操作
-        try {
-            out.close();
-        }catch (IOException e3){
-            e3.printStackTrace();
-        }
-
-
-        return "";
+        //放回一串JSON信息
+        return JsonUtil.toJson(response);
     }
 
 }

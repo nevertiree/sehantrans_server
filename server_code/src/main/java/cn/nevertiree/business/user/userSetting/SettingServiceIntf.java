@@ -2,10 +2,12 @@ package cn.nevertiree.business.user.userSetting;
 
 import cn.nevertiree.domain.Userbaseinfo;
 import cn.nevertiree.domain.Usersite;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by Lance on 7/26/16.
  */
+@Service
 public interface SettingServiceIntf {
 
     //TODO 获得或者设置用户的SITE信息
