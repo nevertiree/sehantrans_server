@@ -1,15 +1,15 @@
-package cn.nevertiree.business.order;
+package cn.nevertiree.business.product;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * Created by Lance on 8/7/16.
+ * Created by Lance on 8/8/16.
  */
 
 @Scope("prototype")
 @Controller
-@RequestMapping("/order")
-public class OrderController {
+@RequestMapping("/product")
+public class ProductController {
 }

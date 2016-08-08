@@ -9,7 +9,7 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="sehantrans" />
-          <element id="dir-copy" path="$PROJECT_DIR$/build/resources/main" />
+          <element id="dir-copy" path="$PROJECT_DIR$/src/main/resources" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="module" name="Gradle: spring-jdbc-4.2.6.RELEASE" module-name="sehantrans" />

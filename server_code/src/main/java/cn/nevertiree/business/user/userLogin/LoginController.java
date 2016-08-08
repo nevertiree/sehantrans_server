@@ -1,6 +1,6 @@
 package cn.nevertiree.business.user.userLogin;
 
-import com.google.gson.Gson;
+import cn.nevertiree.common.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -10,10 +10,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
 import java.util.Map;
-
-/**
- * Created by Lance on 7/25/16.
- */
 
 @Scope("prototype")
 @Controller
@@ -32,7 +28,6 @@ public class LoginController {
         String pwd  = pwdVO.getPwd();
         String token= pwdVO.getToken();
 
-        Gson gson=new Gson();
         //todo 返回值JSON如下
         //success:ture/false
         //token:token(if and only if success is true)
@@ -48,7 +43,7 @@ public class LoginController {
         if (!loginServiceIntf.checkName(name)){
             response.put("success",false);
             response.put("msg","该用户名不存在");//ERROR 100 (username isn't existed)
-            return gson.toJson(response);
+            return JsonUtil.toJson(response);
         }
 
         //2.调用checkPwd函数验证 返回boolean 如果错误说明密码错误或者用户名输入错误
@@ -56,7 +51,7 @@ public class LoginController {
         if (!loginServiceIntf.checkPwd(name,pwd)){
             response.put("success",false);
             response.put("msg","用户名或者密码输入错误");//ERROR 200(name is existed but pwd or name is wrong)
-            return gson.toJson(response);
+            return JsonUtil.toJson(response);
         }
 
         //3.调用checkToken函数验证 返回boolean 如果错误说明非本机登录
@@ -71,7 +66,7 @@ public class LoginController {
 
         response.put("success",true);
         response.put("msg","登录成功");//ERROR
-        return gson.toJson(response);
+        return JsonUtil.toJson(response);
 
     }
 }

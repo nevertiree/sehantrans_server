@@ -10,7 +10,7 @@ public interface UsersecurityMapper {
     //本法用于再注册时判断用户民是否唯一
     @Select({
             "select count(*) from userSecurity",
-            "where name = #{0}"
+            "where loginName = #{0}"
     })
     @ResultType(Integer.class)
     int checkName(String name);
@@ -19,7 +19,7 @@ public interface UsersecurityMapper {
     @Select({
             "select count(*) as no",
             "from userSecurity",
-            "where name = #{0}",
+            "where loginName = #{0}",
             "and pwd = #{1}"
     })
     @ResultType(Integer.class)
@@ -30,7 +30,7 @@ public interface UsersecurityMapper {
     @Select({
             "select count(*) as no",
             "from userSecurity",
-            "where name = #{0}",
+            "where loginName = #{0}",
             "and token = #{1}"
     })
     @ResultType(Integer.class)
@@ -40,14 +40,14 @@ public interface UsersecurityMapper {
     @Update({
             "update userSecurity",
             "set token = #{1}",
-            "where name = #{0}"
+            "where loginName = #{0}"
     })
     int updateToken(String name,String token);
 
 
     //创建新用户
     @Insert({
-            "insert into UserSecurity (no,name,pwd)",
+            "insert into UserSecurity (no,loginName,pwd)",
             "values(#{0},#{1},#{2})"
     })
     int createUser(String no ,String name ,String pwd);
@@ -64,7 +64,7 @@ public interface UsersecurityMapper {
      */
     @Delete({
         "delete from userSecurity",
-        "where no = #{no,jdbcType=VARCHAR}"
+        "where no = #{no,jdbcType=CHAR}"
     })
     int deleteByPrimaryKey(String no);
 
@@ -75,10 +75,10 @@ public interface UsersecurityMapper {
      * @mbggenerated
      */
     @Insert({
-        "insert into userSecurity (no, name, ",
+        "insert into userSecurity (no, loginName, ",
         "pwd, token, ip)",
-        "values (#{no,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, ",
-        "#{pwd,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR})"
+        "values (#{no,jdbcType=CHAR}, #{loginname,jdbcType=VARCHAR}, ",
+        "#{pwd,jdbcType=VARCHAR}, #{token,jdbcType=CHAR}, #{ip,jdbcType=CHAR})"
     })
     int insert(Usersecurity record);
 
@@ -98,9 +98,9 @@ public interface UsersecurityMapper {
      */
     @Select({
         "select",
-        "no, name, pwd, token, ip",
+        "no, loginName, pwd, token, ip",
         "from userSecurity",
-        "where no = #{no,jdbcType=VARCHAR}"
+        "where no = #{no,jdbcType=CHAR}"
     })
     @ResultMap("BaseResultMap")
     Usersecurity selectByPrimaryKey(String no);
@@ -121,11 +121,11 @@ public interface UsersecurityMapper {
      */
     @Update({
         "update userSecurity",
-        "set name = #{name,jdbcType=VARCHAR},",
+        "set loginName = #{loginname,jdbcType=VARCHAR},",
           "pwd = #{pwd,jdbcType=VARCHAR},",
-          "token = #{token,jdbcType=VARCHAR},",
-          "ip = #{ip,jdbcType=VARCHAR}",
-        "where no = #{no,jdbcType=VARCHAR}"
+          "token = #{token,jdbcType=CHAR},",
+          "ip = #{ip,jdbcType=CHAR}",
+        "where no = #{no,jdbcType=CHAR}"
     })
     int updateByPrimaryKey(Usersecurity record);
 }

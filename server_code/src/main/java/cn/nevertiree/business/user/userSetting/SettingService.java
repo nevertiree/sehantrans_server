@@ -1,10 +1,6 @@
 package cn.nevertiree.business.user.userSetting;
 
-import cn.nevertiree.business.dao.UserbaseinfoMapper;
 import cn.nevertiree.business.dao.UsersiteMapper;
-import cn.nevertiree.common.JsonUtil;
-import cn.nevertiree.domain.Userbaseinfo;
-import cn.nevertiree.domain.Usersite;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

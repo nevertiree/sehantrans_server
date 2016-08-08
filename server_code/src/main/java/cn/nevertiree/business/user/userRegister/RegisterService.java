@@ -1,6 +1,5 @@
 package cn.nevertiree.business.user.userRegister;
 
-import cn.nevertiree.business.dao.UserbaseinfoMapper;
 import cn.nevertiree.business.dao.UsersecurityMapper;
 import cn.nevertiree.business.dao.UsersiteMapper;
 

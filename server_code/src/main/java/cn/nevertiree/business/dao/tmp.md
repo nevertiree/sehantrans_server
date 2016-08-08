@@ -1,21 +1,9 @@
- /*********new method begin******/
+ /*****************新方法***开始处*****2016-07-31***********************************/
 
-    //本法用于检查用户的名字和密码相互匹配
-    @Select({
-            "select count(*) as no",
-            "from userInfo",
-            "where name = #{0}",
-            "and pwd = #{1}"
+    @Insert({
+            "insert into UserBaseInfo (no)",
+            "values( #{0} )"
     })
-    @ResultType(Integer.class)
-    int loginByPwd(String name, String pwd);
+    int createUser(String no);
 
-    //本法用于再注册时判断用户民是否唯一
-    @Select({
-            "select count(*) from userInfo",
-            "where name = #{0}"
-    })
-    @ResultType(Integer.class)
-    int checkName(String name);
-
-    /*********new method end******/
+    /*****************新方法***结束处*****2016-07-31***********************************/
