@@ -1,18 +1,120 @@
 package cn.nevertiree.business.dao;
 
+import cn.nevertiree.business.user.userSetting.dvo.*;
 import cn.nevertiree.domain.Userpersoninfo;
 import org.apache.ibatis.annotations.*;
+
+import java.sql.Timestamp;
 
 public interface UserpersoninfoMapper {
 
     /*******new method begin ************/
 
-    @Insert({
-            "insert into UserBaseInfo (no)",
-            "values( #{0} )"
-    })
-    int createUser(String no);
 
+    @Select({
+            "select name",
+            "from userPersonInfo",
+            "where no =#{0}"
+    })
+    String getName(String no);
+
+    @Update({
+            "update userPersonInfo",
+            "set name = #{name,jdbcType=VARCHAR},",
+            "where no = #{no,jdbcType=CHAR}"
+    })
+    int setName(UserNameVO userNameVO);
+
+    @Select({
+            "select gender",
+            "from userPersonInfo",
+            "where no =#{0}"
+    })
+    String getGender(String no);
+
+    @Update({
+            "update userPersonInfo",
+            "set gender = #{gender,jdbcType=SET},",
+            "where no = #{no,jdbcType=CHAR}"
+    })
+    int setGender(UserGenderVO userGenderVO);
+
+    @Select({
+            "select gender",
+            "from userPersonInfo",
+            "where no =#{0}"
+    })
+    Timestamp getBirth(String no);
+
+    @Update({
+            "update userPersonInfo",
+            "set birth = #{birth,jdbcType=DATETIME},",
+            "where no = #{no,jdbcType=CHAR}"
+    })
+    int setBirth(UserBirthVO userBirthVO);
+
+    @Select({
+            "select mobile",
+            "from userPersonInfo",
+            "where no =#{0}"
+    })
+    int  getMobile(String no);
+
+    @Update({
+            "update userPersonInfo",
+            "set mobile = #{mobile,jdbcType=INT},",
+            "where no = #{no,jdbcType=CHAR}"
+    })
+    int setMobile(UserMobileVO userMobileVO);
+
+    @Select({
+            "select email",
+            "from userPersonInfo",
+            "where no =#{0}"
+    })
+    String getEmail(String no);
+
+    @Update({
+            "update userPersonInfo",
+            "set email = #{email,jdbcType=VARCHAR},",
+            "where no = #{no,jdbcType=CHAR}"
+    })
+    int setEmail(UserEmailVO userEmailVO);
+
+    @Select({
+            "select portrait",
+            "from userPersonInfo",
+            "where no =#{0}"
+    })
+    String getPortrait(String no);
+
+    @Select({
+            "select introduction",
+            "from userPersonInfo",
+            "where no =#{0}"
+    })
+    String getIntroduction(String no);
+
+    @Update({
+            "update userPersonInfo",
+            "set name = #{name,jdbcType=VARCHAR},",
+            "where no = #{no,jdbcType=CHAR}"
+    })
+    int setPortrait(UserPortraitVO userPortraitVO);
+
+    @Update({
+            "update userPersonInfo",
+            "set name = #{name,jdbcType=VARCHAR},",
+            "where no = #{no,jdbcType=CHAR}"
+    })
+    int setIntroduction(UserIntroductionVO userIntroductionVO);
+
+    //创建新用户
+    @Insert({
+            "insert into userPersonInfo (no,name,email)",
+            "values(#{0},#{1},#{2})"
+    })
+    int createUser(String no,String name,String loginName);
 
     //根据用户no查询用户存储picture的地址
     @Select({

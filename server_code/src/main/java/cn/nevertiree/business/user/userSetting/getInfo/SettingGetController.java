@@ -1,7 +1,5 @@
 package cn.nevertiree.business.user.userSetting.getInfo;
 
-import cn.nevertiree.business.user.userSetting.SettingPersonServiceIntf;
-import cn.nevertiree.business.user.userSetting.SettingServiceIntf;
 import cn.nevertiree.business.user.userSetting.dvo.*;
 import cn.nevertiree.common.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import java.io.*;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,20 +20,24 @@ import java.util.Map;
 public class SettingGetController {
 
     @Autowired
-    SettingServiceIntf settingServiceIntf;
-    @Autowired
-    SettingPersonServiceIntf settingPersonServiceIntf;
+    SettingGetServiceIntf settingGetServiceIntf;
 
     /**1.通过UserNameVO查看用户的昵称(name)*/
     @RequestMapping(value = "getname" ,method = RequestMethod.GET)
     @ResponseBody
     public String getName(UserNameVO userNameVO){
-        //解析no
-        String no = userNameVO.getNo();
 
-        // TODO: 8/8/16 调用Service
         Map<String ,Object> response = new HashMap<String, Object>();
-
+        //获取名字
+        String name = settingGetServiceIntf.getName(userNameVO.getNo());
+        if (name==null){
+            response.put("success",false);
+            response.put("msg",002);
+        }else {
+            response.put("success",true);
+            response.put("msg",001);
+            response.put("name",name);
+        }
         return JsonUtil.toJson(response);
     }
 
@@ -43,12 +45,17 @@ public class SettingGetController {
     @RequestMapping(value = "getpwd" ,method = RequestMethod.GET)
     @ResponseBody
     public String getPwd(UserPwdVO userPwdVO){
-        //解析no
-        String no = userPwdVO.getNo();
-
-        // TODO: 8/8/16 调用Service
         Map<String ,Object> response = new HashMap<String, Object>();
-
+        //获取名字
+        String pwd = settingGetServiceIntf.getName(userPwdVO.getNo());
+        if (pwd==null){
+            response.put("success",false);
+            response.put("msg",002);
+        }else {
+            response.put("success",true);
+            response.put("msg",001);
+            response.put("pwd",pwd);
+        }
         return JsonUtil.toJson(response);
     }
 
@@ -114,7 +121,7 @@ public class SettingGetController {
         //使用Map输出结果
         Map<String,Object> response = new HashMap<String,Object>();
 
-        //根据数据库中的存在情况设置返回map
+        /*//根据数据库中的存在情况设置返回map
         if (settingServiceIntf.getSiteInfo(no)==null){
             response.put("success",false);
             response.put("msg","username is not found");
@@ -122,7 +129,7 @@ public class SettingGetController {
             //在Map中插入返回的UserSiteVO
             response.put("success",true);
             response.put("value",settingServiceIntf.getSiteInfo(no));
-        }
+        }*/
 
         //把结果转成JSON返回
         return JsonUtil.toJson(response);
@@ -139,17 +146,17 @@ public class SettingGetController {
         Map<String,Object> response = new HashMap<String,Object>();
 
         //取得从文件系统读取的该用户照片byte流
-        File portait = settingPersonServiceIntf.getUserPortait(no);
+        //File portait = settingPersonServiceIntf.getUserPortait(no);
 
         //如果byte数组长度为0，说明读取失败
-        if (portait==null){
+        /*if (portait==null){
             response.put("success",false);
             response.put("msg",000);
         }else {
             response.put("success",true);
             response.put("msg",001);
             response.put("portait",portait);
-        }
+        }*/
 
         return JsonUtil.toJson(response);
     }
@@ -165,7 +172,7 @@ public class SettingGetController {
         Map<String,Object> response = new HashMap<String,Object>();
 
         //取得从文件系统读取的该用户照片byte流
-        byte[] introduction = settingPersonServiceIntf.getUserIntroduction(no);
+        /*byte[] introduction = settingPersonServiceIntf.getUserIntroduction(no);
 
         //如果byte数组长度为0，说明读取失败
         if (introduction.length==0){
@@ -176,7 +183,7 @@ public class SettingGetController {
             response.put("success",true);
             response.put("msg",001);
             response.put("introduction",introduction);
-        }
+        }*/
 
         //放回一串JSON信息
         return JsonUtil.toJson(response);

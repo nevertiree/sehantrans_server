@@ -1,11 +1,34 @@
 package cn.nevertiree.business.dao;
 
+import cn.nevertiree.business.user.userSetting.dvo.UserPwdVO;
 import cn.nevertiree.domain.Usersecurity;
 import org.apache.ibatis.annotations.*;
 
 public interface UsersecurityMapper {
 
     /*********new method begin******/
+
+    //创建新用户
+    @Insert({
+            "insert into UserSecurity (no,loginName,pwd)",
+            "values(#{0},#{1},#{2})"
+    })
+    @ResultType(Integer.class)
+    int createUser(String no ,String loginName ,String pwd);
+
+    @Select({
+            "select pwd",
+            "from userSecurity",
+            "where no =#{0}"
+    })
+    String getPwd(String no);
+
+    @Update({
+            "update userSecurity",
+            "set pwd = #{pwd,jdbcType=VARCHAR},",
+            "where no = #{no,jdbcType=CHAR}"
+    })
+    int setPwd(UserPwdVO userPwdVO);
 
     //本法用于再注册时判断用户民是否唯一
     @Select({
@@ -45,15 +68,7 @@ public interface UsersecurityMapper {
     int updateToken(String name,String token);
 
 
-    //创建新用户
-    @Insert({
-            "insert into UserSecurity (no,loginName,pwd)",
-            "values(#{0},#{1},#{2})"
-    })
-    int createUser(String no ,String name ,String pwd);
-
     /*********new method end******/
-
 
 
     /**

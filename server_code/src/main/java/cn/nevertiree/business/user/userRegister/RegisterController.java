@@ -1,6 +1,8 @@
 package cn.nevertiree.business.user.userRegister;
 
+import cn.nevertiree.business.user.userRegister.dvo.RegisterVO;
 import cn.nevertiree.common.IdGenerator;
+import cn.nevertiree.common.JsonUtil;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -24,61 +26,32 @@ public class RegisterController {
     @Autowired
     RegisterServiceIntf registerServiceIntf;
 
-    /*
-    TODO 1 邮箱
-
+    /*TODO 1 邮箱
         正则表达式检验字符串是否符合邮箱规范
-
         检查该邮箱是否已经注册过，如果没有就发送激活邮件，否则报错
-
-    TODO 2 密码
-
+      TODO 2 密码
         密码长度至少六位而且必须而且只能含英文与数字
+      TODO 3.服务器完成注册
+        在userSecurity和userBase中insert邮箱密码ID和默认用户名    **/
 
-    TODO 3.服务器完成注册
-
-        在userSecurity和userBase中insert邮箱密码ID和默认用户名
-
-    * */
-
-    //根据用户名注册的时候判断是否重名(这里的name是广义的)
+    //根据LoginName判断是否重名(这里的name是广义的)
     @RequestMapping(value = "/create" ,method = RequestMethod.GET)
     @ResponseBody
     public String createUser(RegisterVO registerVO){
-        //得到用户想要注册的用户名和M密码
-        String name = registerVO.getName();
-        String pwd  = registerVO.getPwd();
 
+        //开始建立用户的信息row（在3张表中同时建立）并且得到返回信息
+        String result = registerServiceIntf.createUser(registerVO);
         Map<String,Object> response = new HashMap<String,Object>();
-        Gson gson= new Gson();
 
-        // TODO: 8/4/16
-        // 200表示成功
-        // 201表示注册方式重复 name是广义的 包括用于注册的邮箱电话等等
-        // 202表示数据库插入失败
-
-        if (registerServiceIntf.checkName(name)){
+        //只有等于001时才成功
+        if (result.equals(Integer.toString(001))){
             response.put("success",true);
-        }else
-        {
-            response.put("success",false);
-            response.put("msg",201);
-            return gson.toJson(response);
-        }
-
-        //得到唯一的userNo
-        String no = IdGenerator.getHashId(name);
-
-        //开始建立用户的信息row（在3张表中同时建立）
-        if (registerServiceIntf.createUser(no,name,pwd)){
-            response.put("success",true);
-            response.put("msg",200);
+            response.put("msg",001);
         }else{
             response.put("success",false);
-            response.put("msg" , 202);
+            response.put("msg" , result);
         }
 
-        return gson.toJson(response);
+        return JsonUtil.toJson(response);
     }
-
 }

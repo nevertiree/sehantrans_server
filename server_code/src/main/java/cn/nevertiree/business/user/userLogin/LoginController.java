@@ -1,5 +1,6 @@
 package cn.nevertiree.business.user.userLogin;
 
+import cn.nevertiree.business.user.userLogin.dvo.LoginPwdVO;
 import cn.nevertiree.common.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -24,7 +25,7 @@ public class LoginController {
     @ResponseBody
     public String loginByPwd(LoginPwdVO pwdVO){
         //解析VO用户名 密码 和TOKEN
-        String name = pwdVO.getName();
+        String loginName = pwdVO.getLoginName();
         String pwd  = pwdVO.getPwd();
         String token= pwdVO.getToken();
 
@@ -40,7 +41,7 @@ public class LoginController {
         // TODO: 验证用户名-token和用户名-密码
 
         //1.调用checkName函数验证 返回boolean 如果错误说明用户名不存在
-        if (!loginServiceIntf.checkName(name)){
+        if (!loginServiceIntf.checkName(loginName)){
             response.put("success",false);
             response.put("msg","该用户名不存在");//ERROR 100 (username isn't existed)
             return JsonUtil.toJson(response);
@@ -48,7 +49,7 @@ public class LoginController {
 
         //2.调用checkPwd函数验证 返回boolean 如果错误说明密码错误或者用户名输入错误
             //select count(*) from userSecurity where name = "name" and pwd = "pwd";
-        if (!loginServiceIntf.checkPwd(name,pwd)){
+        if (!loginServiceIntf.checkPwd(loginName,pwd)){
             response.put("success",false);
             response.put("msg","用户名或者密码输入错误");//ERROR 200(name is existed but pwd or name is wrong)
             return JsonUtil.toJson(response);
@@ -67,6 +68,5 @@ public class LoginController {
         response.put("success",true);
         response.put("msg","登录成功");//ERROR
         return JsonUtil.toJson(response);
-
     }
 }
