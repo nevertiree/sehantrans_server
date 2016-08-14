@@ -1,6 +1,5 @@
-package cn.nevertiree.business.user.login;
+package cn.nevertiree.business.user.userLogin;
 
-import cn.nevertiree.business.user.userLogin.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**

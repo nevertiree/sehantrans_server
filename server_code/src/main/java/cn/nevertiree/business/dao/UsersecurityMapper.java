@@ -3,7 +3,9 @@ package cn.nevertiree.business.dao;
 import cn.nevertiree.business.user.userSetting.dvo.UserPwdVO;
 import cn.nevertiree.domain.Usersecurity;
 import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface UsersecurityMapper {
 
     /*********new method begin******/
@@ -16,6 +18,7 @@ public interface UsersecurityMapper {
     @ResultType(Integer.class)
     int createUser(String no ,String loginName ,String pwd);
 
+    /**获取或者修改密码*/
     @Select({
             "select pwd",
             "from userSecurity",

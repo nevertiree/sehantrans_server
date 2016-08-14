@@ -3,14 +3,17 @@ package cn.nevertiree.business.dao;
 import cn.nevertiree.business.user.userSetting.dvo.*;
 import cn.nevertiree.domain.Userpersoninfo;
 import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
 
+@Component
 public interface UserpersoninfoMapper {
 
     /*******new method begin ************/
 
 
+    /**获取或者修改名字*/
     @Select({
             "select name",
             "from userPersonInfo",
@@ -25,6 +28,7 @@ public interface UserpersoninfoMapper {
     })
     int setName(UserNameVO userNameVO);
 
+    /**获取或者修改性别*/
     @Select({
             "select gender",
             "from userPersonInfo",
@@ -39,6 +43,7 @@ public interface UserpersoninfoMapper {
     })
     int setGender(UserGenderVO userGenderVO);
 
+    /**获取或者修改生日*/
     @Select({
             "select gender",
             "from userPersonInfo",
@@ -53,6 +58,7 @@ public interface UserpersoninfoMapper {
     })
     int setBirth(UserBirthVO userBirthVO);
 
+    /**获取或者修改手机号*/
     @Select({
             "select mobile",
             "from userPersonInfo",
@@ -67,6 +73,7 @@ public interface UserpersoninfoMapper {
     })
     int setMobile(UserMobileVO userMobileVO);
 
+    /**获取或者修改邮箱*/
     @Select({
             "select email",
             "from userPersonInfo",
@@ -81,6 +88,7 @@ public interface UserpersoninfoMapper {
     })
     int setEmail(UserEmailVO userEmailVO);
 
+    /**获取或者修改照片*/
     @Select({
             "select portrait",
             "from userPersonInfo",

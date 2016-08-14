@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.File;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,14 +24,18 @@ public class SettingGetController {
     @Autowired
     SettingGetServiceIntf settingGetServiceIntf;
 
+    //返回map
+    private static Map<String ,Object> response = new HashMap<String, Object>();
+
     /**1.通过UserNameVO查看用户的昵称(name)*/
     @RequestMapping(value = "getname" ,method = RequestMethod.GET)
     @ResponseBody
     public String getName(UserNameVO userNameVO){
 
-        Map<String ,Object> response = new HashMap<String, Object>();
         //获取名字
         String name = settingGetServiceIntf.getName(userNameVO.getNo());
+        //如果没有名字返回
+        response.clear();
         if (name==null){
             response.put("success",false);
             response.put("msg",002);
@@ -45,9 +51,9 @@ public class SettingGetController {
     @RequestMapping(value = "getpwd" ,method = RequestMethod.GET)
     @ResponseBody
     public String getPwd(UserPwdVO userPwdVO){
-        Map<String ,Object> response = new HashMap<String, Object>();
-        //获取名字
-        String pwd = settingGetServiceIntf.getName(userPwdVO.getNo());
+        response.clear();
+        //获取密码
+        String pwd = settingGetServiceIntf.getPwd(userPwdVO.getNo());
         if (pwd==null){
             response.put("success",false);
             response.put("msg",002);
@@ -63,12 +69,17 @@ public class SettingGetController {
     @RequestMapping(value = "getgender" ,method = RequestMethod.GET)
     @ResponseBody
     public String getGender(UserGenderVO userGenderVO){
-        //解析no
-        String no = userGenderVO.getNo();
-
-        // TODO: 8/8/16 调用Service
-        Map<String ,Object> response = new HashMap<String, Object>();
-
+        response.clear();
+        //获取性别
+        String gender = settingGetServiceIntf.getGender(userGenderVO.getNo());
+        if (gender==null){
+            response.put("success",false);
+            response.put("msg",002);
+        }else {
+            response.put("success",true);
+            response.put("msg",001);
+            response.put("gender",gender);
+        }
         return JsonUtil.toJson(response);
     }
 
@@ -76,12 +87,17 @@ public class SettingGetController {
     @RequestMapping(value = "getbirth" ,method = RequestMethod.GET)
     @ResponseBody
     public String getBirth(UserBirthVO userBirthVO){
-        //解析no
-        String no = userBirthVO.getNo();
-
-        // TODO: 8/8/16 调用Service
-        Map<String ,Object> response = new HashMap<String, Object>();
-
+        response.clear();
+        //获取生日
+        Timestamp birth= settingGetServiceIntf.getBirth(userBirthVO.getNo());
+        if (birth==null){
+            response.put("success",false);
+            response.put("msg",002);
+        }else {
+            response.put("success",true);
+            response.put("msg",001);
+            response.put("birth",birth);
+        }
         return JsonUtil.toJson(response);
     }
 
@@ -89,12 +105,17 @@ public class SettingGetController {
     @RequestMapping(value = "getmobile" ,method = RequestMethod.GET)
     @ResponseBody
     public String getMobile(UserMobileVO userMobileVO){
-        //解析no
-        String no = userMobileVO.getNo();
-
-        // TODO: 8/8/16 调用Service
-        Map<String ,Object> response = new HashMap<String, Object>();
-
+        response.clear();
+        //获取手机号
+        int mobile= settingGetServiceIntf.getMobile(userMobileVO.getNo());
+        if (mobile==0){
+            response.put("success",false);
+            response.put("msg",002);
+        }else {
+            response.put("success",true);
+            response.put("msg",001);
+            response.put("mobile",mobile);
+        }
         return JsonUtil.toJson(response);
     }
 
@@ -102,12 +123,17 @@ public class SettingGetController {
     @RequestMapping(value = "getemail" ,method = RequestMethod.GET)
     @ResponseBody
     public String getEmail(UserEmailVO userEmailVO){
-        //解析no
-        String no = userEmailVO.getNo();
-
-        // TODO: 8/8/16 调用Service
-        Map<String ,Object> response = new HashMap<String, Object>();
-
+        response.clear();
+        //获取邮箱
+        String email= settingGetServiceIntf.getEmail(userEmailVO.getNo());
+        if (email==null){
+            response.put("success",false);
+            response.put("msg",002);
+        }else {
+            response.put("success",true);
+            response.put("msg",001);
+            response.put("email",email);
+        }
         return JsonUtil.toJson(response);
     }
 
@@ -115,23 +141,17 @@ public class SettingGetController {
     @RequestMapping(value = "/getsite" ,method = RequestMethod.GET)
     @ResponseBody
     public String getSite(UserSiteVO userSiteVO){
-        //解析no
-        String no = userSiteVO.getNo();
-
-        //使用Map输出结果
-        Map<String,Object> response = new HashMap<String,Object>();
-
-        /*//根据数据库中的存在情况设置返回map
-        if (settingServiceIntf.getSiteInfo(no)==null){
+        response.clear();
+        //获取地址
+        UserSiteVO site= settingGetServiceIntf.getSite(userSiteVO.getNo());
+        if (site==null){
             response.put("success",false);
-            response.put("msg","username is not found");
+            response.put("msg",002);
         }else {
-            //在Map中插入返回的UserSiteVO
             response.put("success",true);
-            response.put("value",settingServiceIntf.getSiteInfo(no));
-        }*/
-
-        //把结果转成JSON返回
+            response.put("msg",001);
+            response.put("site",site);
+        }
         return JsonUtil.toJson(response);
     }
 
@@ -139,25 +159,17 @@ public class SettingGetController {
     @RequestMapping(value = "getportrait" ,method = RequestMethod.GET)
     @ResponseBody
     public String getPortrait(UserPortraitVO userPortraitVO){
-
-        String no = userPortraitVO.getNo();
-
-        //准备用于返回JSON信息的Map
-        Map<String,Object> response = new HashMap<String,Object>();
-
-        //取得从文件系统读取的该用户照片byte流
-        //File portait = settingPersonServiceIntf.getUserPortait(no);
-
-        //如果byte数组长度为0，说明读取失败
-        /*if (portait==null){
+        response.clear();
+        //获取头像
+        File portrait= settingGetServiceIntf.getPortrait(userPortraitVO.getNo());
+        if (portrait==null){
             response.put("success",false);
-            response.put("msg",000);
+            response.put("msg",002);
         }else {
             response.put("success",true);
             response.put("msg",001);
-            response.put("portait",portait);
-        }*/
-
+            response.put("portrait",portrait);
+        }
         return JsonUtil.toJson(response);
     }
 
@@ -165,27 +177,17 @@ public class SettingGetController {
     @RequestMapping(value = "getintroduction" ,method = RequestMethod.POST)
     @ResponseBody
     public String getIntroduction(UserIntroductionVO userIntroductionVO){
-
-        String no = userIntroductionVO.getNo();
-
-        //准备用于返回JSON信息的Map
-        Map<String,Object> response = new HashMap<String,Object>();
-
-        //取得从文件系统读取的该用户照片byte流
-        /*byte[] introduction = settingPersonServiceIntf.getUserIntroduction(no);
-
-        //如果byte数组长度为0，说明读取失败
-        if (introduction.length==0){
+        response.clear();
+        //获取个人介绍
+        byte[] introduction= settingGetServiceIntf.getIntroduction(userIntroductionVO.getNo());
+        if (introduction==null){
             response.put("success",false);
-            response.put("msg",000);
-        }else
-        {
+            response.put("msg",002);
+        }else {
             response.put("success",true);
             response.put("msg",001);
             response.put("introduction",introduction);
-        }*/
-
-        //放回一串JSON信息
+        }
         return JsonUtil.toJson(response);
     }
 

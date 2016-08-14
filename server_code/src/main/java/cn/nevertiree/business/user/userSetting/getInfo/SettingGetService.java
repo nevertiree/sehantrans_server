@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.sql.Timestamp;
 
 /**
@@ -20,13 +18,13 @@ import java.sql.Timestamp;
 public class SettingGetService implements SettingGetServiceIntf {
 
     @Autowired
-    UserpersoninfoMapper userpersoninfoMapper;
+    private UserpersoninfoMapper userpersoninfoMapper;
 
     @Autowired
-    UsersecurityMapper usersecurityMapper;
+    private UsersecurityMapper usersecurityMapper;
 
     @Autowired
-    UsersiteMapper usersiteMapper;
+    private UsersiteMapper usersiteMapper;
 
     public String getName(String no){
         return userpersoninfoMapper.getName(no);
@@ -35,6 +33,7 @@ public class SettingGetService implements SettingGetServiceIntf {
     public String getPwd(String no){
         return usersecurityMapper.getPwd(no);
     }
+
     public String getGender(String no){
         return userpersoninfoMapper.getGender(no);
     }
@@ -55,20 +54,20 @@ public class SettingGetService implements SettingGetServiceIntf {
         return usersiteMapper.getSite(no);
     }
     public File getPortrait(String no){
-        //创建返回的byte数组，并初始化为null，如果后续步骤失败，直接返回null
+
+        //创建返回的File数组，并初始化为null，如果后续步骤失败，直接返回null
         File portait = null;
 
         //根据用户no查询该用户存储头像的地址
-        String picturePath = userpersoninfoMapper.getPicturePath(no);
+        String portaitPath = userpersoninfoMapper.getPicturePath(no);
 
         //根据地址创建图片的File对象
-        File pictureFile = new File(picturePath);
+        portait = new File(portaitPath);
 
-        //创建输入流，从文件系统中读取图片，并且转换成byte[]
-        /*try {
-            FileInputStream input = new FileInputStream(pictureFile);
-            portait = new byte[(int)pictureFile.length()];
-            input.read(portait);
+        /*//创建输入流，从文件系统中读取图片，并且转换成byte[]
+        try {
+            FileInputStream input = new FileInputStream(portait);
+            input.(portait);
             input.close();
         }catch (IOException e1){
             //出现异常时把portait重新设成null
@@ -77,10 +76,12 @@ public class SettingGetService implements SettingGetServiceIntf {
         }*/
 
         //输出byte字节流
-        return portait;    }
+        return portait;
+    }
     public byte[] getIntroduction(String no){
         //创建返回的byte数组，并初始化为null，如果后续步骤失败，直接返回null
         byte[] introduction = null;
+/*
 
         //从数据库中找出存储个人介绍的txt地址
         String introductionPath = userpersoninfoMapper.getIntroductionPath(no);
@@ -103,6 +104,7 @@ public class SettingGetService implements SettingGetServiceIntf {
             introduction= null;
             e.printStackTrace();
         }
+*/
 
         //返回个人简介的byte[]
         return introduction;

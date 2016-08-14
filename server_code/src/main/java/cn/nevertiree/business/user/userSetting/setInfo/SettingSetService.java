@@ -19,13 +19,13 @@ import java.io.OutputStream;
 public class SettingSetService implements SettingSetServiceIntf {
 
     @Autowired
-    UsersecurityMapper usersecurityMapper;
+    private UsersecurityMapper usersecurityMapper;
 
     @Autowired
-    UserpersoninfoMapper userpersoninfoMapper;
+    private UserpersoninfoMapper userpersoninfoMapper;
 
     @Autowired
-    UsersiteMapper usersiteMapper;
+    private UsersiteMapper usersiteMapper;
 
     public boolean setName(UserNameVO userNameVO){
         return !(userpersoninfoMapper.setName(userNameVO)==0);
@@ -79,7 +79,7 @@ public class SettingSetService implements SettingSetServiceIntf {
         //设置默认返回值
         boolean result = false;
 
-        String no = userIntroductionVO.getNo();
+        /*String no = userIntroductionVO.getNo();
 
         byte[] introduction = userIntroductionVO.getIntroduction();
 
@@ -114,7 +114,7 @@ public class SettingSetService implements SettingSetServiceIntf {
             //一旦出现异常就把返回值设为错误
             result = false;
             e1.printStackTrace();
-        }
+        }*/
 
         //输出返回值
         return result;

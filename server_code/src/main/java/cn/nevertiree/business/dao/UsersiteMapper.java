@@ -3,7 +3,9 @@ package cn.nevertiree.business.dao;
 import cn.nevertiree.business.user.userSetting.dvo.UserSiteVO;
 import cn.nevertiree.domain.Usersite;
 import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface UsersiteMapper {
 
     /*****************新方法***开始处*****2016-07-31***********************************/

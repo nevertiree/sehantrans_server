@@ -22,7 +22,7 @@ public class SettingSetController {
     @Autowired
     SettingSetServiceIntf settingSetServiceIntf;
 
-    public String resultMap(boolean result){
+    private String resultMap(boolean result){
         Map<String ,Object> response = new HashMap<String, Object>();
         if (result) response.put("success",true);
         else response.put("success",false);
