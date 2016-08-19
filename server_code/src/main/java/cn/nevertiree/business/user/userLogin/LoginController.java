@@ -24,7 +24,7 @@ public class LoginController {
     @RequestMapping(value = "/common",method = RequestMethod.GET)
     @ResponseBody
     public String loginByPwd(LoginPwdVO pwdVO){
-        //解析VO用户名 密码 和TOKEN
+
         String loginName = pwdVO.getLoginName();
         String pwd  = pwdVO.getPwd();
         String token= pwdVO.getToken();

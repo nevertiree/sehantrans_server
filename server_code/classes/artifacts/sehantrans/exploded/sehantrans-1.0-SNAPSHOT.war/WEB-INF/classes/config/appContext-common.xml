@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <!-- json转换器 -->
+    <bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <property name="supportedMediaTypes" value="application/json" />
+    </bean>
+
+    <!-- enable component scanning (beware that this does not enable mapper scanning!) -->
+    <!-- 启动包扫描功能，以便注册带有@Controller、@Service、@repository、@Component等注解的类成为spring的bean -->
+    <context:component-scan base-package="cn.nevertiree.business" />
+
+    <!-- enable autowire -->
+    <context:annotation-config />
+
+    <!-- enable transaction demarcation with annotations -->
+    <tx:annotation-driven />
+
+    <!--配置数据源 DriverManagerDataSource在每个链接请求时都会返回一个新建的链接-->
+    <!--虽然DriverManagerDataSource支持多线程，但是在每次请求链接时都会创建新的链接，这是以性能为代价的-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+        <property name="url" value="jdbc:mysql://localhost:3306/sehantrans"></property>
+        <property name="username" value="root"></property>
+        <property name="password" value="0512"></property>
+    </bean>
+
+    <!--配置数据源链接池，Spring没有提供数据源链接池实现，但是有Jakarta Commons Database Connection Polling项目可以使用，这也是推荐的方法-->
+    <!--设定destroy-method=”close”属性， 以便Spring容器关闭时，数据源能够正常关闭。-->
+    <!--<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+        &lt;!&ndash;驱动的名字&ndash;&gt;
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+        &lt;!&ndash;数据库的url&ndash;&gt;
+        <property name="url" value="jdbc:mysql://localhost:3306/sehantrans"></property>
+        &lt;!&ndash;用户名&ndash;&gt;
+        <property name="username" value="root"></property>
+        &lt;!&ndash;密码&ndash;&gt;
+        <property name="password" value="0512"></property>
+        &lt;!&ndash;设置从数据源中返回的连接是否采用自动提交机制，默认值为 true&ndash;&gt;
+        <property name="defaultAutoCommit" value="true"/>
+        &lt;!&ndash;设置数据源是否仅能执行只读操作， 默认值为 false&ndash;&gt;
+        <property name="defaultReadOnly" value="false"/>
+        &lt;!&ndash;最大连接数据库连接数，设置为0时，表示没有限制&ndash;&gt;
+        <property name="maxTotal" value="0"/>
+        &lt;!&ndash;最大等待连接中的数量，设置为0时，表示没有限制&ndash;&gt;
+        <property name="maxIdle" value="0"/>
+        &lt;!&ndash;最大等待秒数，单位为毫秒， 超过时间会报出错误信息&ndash;&gt;
+        <property name="maxWaitMillis" value="100000"/>
+        &lt;!&ndash;用于验证连接是否成功的查询SQL语句，SQL语句必须至少要返回一行数据&ndash;&gt;
+        <property name="validationQuery" value="1"/>
+        &lt;!&ndash;removeAbandoned：是否自我中断，默认是 false ；
+        removeAbandonedTimeout：几秒后数据连接会自动断开，在removeAbandoned为true，提供该值；
+        logAbandoned：是否记录中断事件， 默认为 false；&ndash;&gt;
+    </bean>-->
+
+    <!-- transaction manager, use JtaTransactionManager for global tx -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <!--MyBatis-Spring系统的核心:配置sqlSessionFactory-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--引入数据源-->
+        <property name="dataSource" ref="dataSource" />
+        <!--定位每个数据表对应的Data Value Object文件-->
+        <property name="typeAliasesPackage" value="cn.nevertiree.domain" />
+        <!--定位每个数据表的Mapper配置文件 -->
+        <property name="mapperLocations" value="classpath*:cn/nevertiree/domain/*.xml" />
+    </bean>
+
+    <!-- 扫描每个表对应的Mapper类-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--规定其包位置及其子包-->
+        <property name="basePackage" value="cn.nevertiree.business.dao" />
+    </bean>
+</beans>

@@ -5,17 +5,12 @@ import java.io.File;
 /**
  * Created by Lance on 8/8/16.
  */
-public class UserPortraitVO {
+public class UserPortraitVO extends UserSettingType {
 
-    private String no;
-    private File   portrait;
+    private File portrait;
 
-    public String getNo() {
-        return no;
-    }
-
-    public void setNo(String no) {
-        this.no = no;
+    int getTypeCode(){
+        return UserSettingType.PORTRAIT;
     }
 
     public File getPortrait() {
@@ -25,4 +20,15 @@ public class UserPortraitVO {
     public void setPortrait(File portrait) {
         this.portrait = portrait;
     }
+
+    /**取得或者修改信息*/
+
+    public boolean setInfo(UserSettingType userSettingType){
+        return false;
+    }
+
+    public UserSettingType getInfo(UserSettingType userSettingType){
+        return null;
+    }
+
 }

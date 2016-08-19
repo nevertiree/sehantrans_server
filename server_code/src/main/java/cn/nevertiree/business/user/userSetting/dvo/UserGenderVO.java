@@ -3,18 +3,13 @@ package cn.nevertiree.business.user.userSetting.dvo;
 /**
  * Created by Lance on 8/8/16.
  */
-public class UserGenderVO {
+public class UserGenderVO extends UserSettingType {
 
-    private String no;
     private String gender;
     public enum genderValue{男,女,保密};
 
-    public String getNo() {
-        return no;
-    }
-
-    public void setNo(String no) {
-        this.no = no;
+    int getTypeCode(){
+        return UserSettingType.GENDER;
     }
 
     public String getGender() {
@@ -23,5 +18,15 @@ public class UserGenderVO {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    /**取得或者修改信息*/
+
+    public UserSettingType getInfo(UserSettingType userSettingType){
+        return null;
+    }
+
+    public boolean setInfo(UserSettingType userSettingType){
+        return false;
     }
 }

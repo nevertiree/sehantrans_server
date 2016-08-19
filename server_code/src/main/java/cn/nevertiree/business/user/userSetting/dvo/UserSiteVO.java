@@ -3,9 +3,8 @@ package cn.nevertiree.business.user.userSetting.dvo;
 /**
  * Created by Lance on 8/8/16.
  */
-public class UserSiteVO {
+public class UserSiteVO extends UserSettingType {
 
-    private String no;
     private String province;
     private String city;
     private String county;
@@ -13,12 +12,8 @@ public class UserSiteVO {
     private String street;
     private String school;
 
-    public String getNo() {
-        return no;
-    }
-
-    public void setNo(String no) {
-        this.no = no;
+    int getTypeCode(){
+        return UserSettingType.SITE;
     }
 
     public String getProvince() {
@@ -68,4 +63,15 @@ public class UserSiteVO {
     public void setSchool(String school) {
         this.school = school;
     }
+
+    /**取得或者修改信息*/
+
+    public UserSettingType getInfo(UserSettingType userSettingType){
+        return null;
+    }
+
+    public boolean setInfo(UserSettingType userSettingType){
+        return false;
+    }
+
 }

@@ -3,16 +3,12 @@ package cn.nevertiree.business.user.userSetting.dvo;
 /**
  * Created by Lance on 8/8/16.
  */
-public class UserIntroductionVO {
-    private String no;
+public class UserIntroductionVO extends UserSettingType {
+
     private byte[] introduction;
 
-    public String getNo() {
-        return no;
-    }
-
-    public void setNo(String no) {
-        this.no = no;
+    int getTypeCode(){
+        return UserSettingType.INTRODUCTION;
     }
 
     public byte[] getIntroduction() {
@@ -21,5 +17,14 @@ public class UserIntroductionVO {
 
     public void setIntroduction(byte[] introduction) {
         this.introduction = introduction;
+    }
+
+    /**取得或者修改信息*/
+
+    public UserSettingType getInfo(UserSettingType userSettingType){
+        return null;
+    }
+    public boolean setInfo(UserSettingType userSettingType){
+        return false;
     }
 }

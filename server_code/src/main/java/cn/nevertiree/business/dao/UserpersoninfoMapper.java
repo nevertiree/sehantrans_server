@@ -12,7 +12,6 @@ public interface UserpersoninfoMapper {
 
     /*******new method begin ************/
 
-
     /**获取或者修改名字*/
     @Select({
             "select name",
