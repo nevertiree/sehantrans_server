@@ -8,9 +8,10 @@ package cn.nevertiree.business.user.userRegister.dvo;
 public class RegisterVO {
 
     private String no;
-    private String name;
     private String loginName;
     private String pwd;
+    private String token;
+    private String ip;
 
     public String getNo() {
         return no;
@@ -18,14 +19,6 @@ public class RegisterVO {
 
     public void setNo(String no) {
         this.no = no;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getLoginName() {
@@ -42,5 +35,21 @@ public class RegisterVO {
 
     public void setPwd(String pwd) {
         this.pwd = pwd;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
     }
 }

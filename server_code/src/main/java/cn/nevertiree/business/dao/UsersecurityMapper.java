@@ -1,5 +1,6 @@
 package cn.nevertiree.business.dao;
 
+import cn.nevertiree.business.user.userRegister.dvo.RegisterVO;
 import cn.nevertiree.business.user.userSetting.dvo.UserPwdVO;
 import cn.nevertiree.domain.Usersecurity;
 import org.apache.ibatis.annotations.*;
@@ -12,19 +13,31 @@ public interface UsersecurityMapper {
 
     //创建新用户
     @Insert({
-            "insert into UserSecurity (no,loginName,pwd)",
-            "values(#{0},#{1},#{2})"
+            "insert into userSecurity (no, loginName, ",
+            "pwd, token, ip)",
+            "values (#{no,jdbcType=CHAR}, #{loginname,jdbcType=VARCHAR}, ",
+            "#{pwd,jdbcType=VARCHAR}, #{token,jdbcType=CHAR}, #{ip,jdbcType=CHAR})"    })
+    @ResultType(Integer.class)
+    int createUser(RegisterVO registerVO);
+
+    //本法用于再注册时判断用户民是否唯一
+    @Select({
+            "select count(*) ",
+            "from userSecurity",
+            "where loginName = #{0}"
     })
     @ResultType(Integer.class)
-    int createUser(String no ,String loginName ,String pwd);
+    int hasLoginName(String name);
 
-    /**获取或者修改密码*/
+    //本法用于检查用户的名字和密码
     @Select({
-            "select pwd",
+            "select count(*)",
             "from userSecurity",
-            "where no =#{0}"
+            "where loginName = #{0}",
+            "and pwd = #{1}"
     })
-    String getPwd(String no);
+    @ResultType(Integer.class)
+    int isRightPwd(String name, String pwd);
 
     @Update({
             "update userSecurity",
@@ -33,24 +46,13 @@ public interface UsersecurityMapper {
     })
     int setPwd(UserPwdVO userPwdVO);
 
-    //本法用于再注册时判断用户民是否唯一
+    /**获取或者修改密码*/
     @Select({
-            "select count(*) from userSecurity",
-            "where loginName = #{0}"
-    })
-    @ResultType(Integer.class)
-    int checkName(String name);
-
-    //本法用于检查用户的名字和密码
-    @Select({
-            "select count(*) as no",
+            "select pwd",
             "from userSecurity",
-            "where loginName = #{0}",
-            "and pwd = #{1}"
+            "where no =#{0}"
     })
-    @ResultType(Integer.class)
-    int checkPwd(String name, String pwd);
-
+    String getPwd(String no);
 
     //本法用于检查用户的token
     @Select({

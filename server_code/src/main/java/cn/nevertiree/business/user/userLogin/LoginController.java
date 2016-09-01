@@ -1,6 +1,7 @@
 package cn.nevertiree.business.user.userLogin;
 
 import cn.nevertiree.business.user.userLogin.dvo.LoginPwdVO;
+import cn.nevertiree.common.GenerateResponse;
 import cn.nevertiree.common.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -36,37 +37,25 @@ public class LoginController {
         //     100(username isn't existed)
         //     200(username is existed but password or username is wrong)
         //     300(username and password are right but login in strange device)
-        Map<String,Object> response=new HashMap<String,Object>();
 
         // TODO: 验证用户名-token和用户名-密码
 
         //1.调用checkName函数验证 返回boolean 如果错误说明用户名不存在
-        if (!loginServiceIntf.checkName(loginName)){
-            response.put("success",false);
-            response.put("msg","该用户名不存在");//ERROR 100 (username isn't existed)
-            return JsonUtil.toJson(response);
-        }
+        boolean hasName = loginServiceIntf.hasLoginName(loginName);
+        if (!hasName)
+            return GenerateResponse.generateResponse(false,"100");
 
         //2.调用checkPwd函数验证 返回boolean 如果错误说明密码错误或者用户名输入错误
             //select count(*) from userSecurity where name = "name" and pwd = "pwd";
-        if (!loginServiceIntf.checkPwd(loginName,pwd)){
-            response.put("success",false);
-            response.put("msg","用户名或者密码输入错误");//ERROR 200(name is existed but pwd or name is wrong)
-            return JsonUtil.toJson(response);
-        }
+
+        boolean isRightPwd = loginServiceIntf.isRightPwd(loginName,pwd);
+        if (!isRightPwd)
+            return GenerateResponse.generateResponse(false,"200");
 
         //3.调用checkToken函数验证 返回boolean 如果错误说明非本机登录
 
-        /*if (!loginServiceIntf.checkToken(name,token)){
-            response.put("success",false);
-            response.put("msg","300");//ERROR 300(name and pwd are right but login in strange device)
-            return gson.toJson(response);
-        }*/
+        //4.以上3方面同时成功时返回success 同时用UserTokenGenerator更新token并返回 undo
 
-        //4.以上3方面同时成功时返回success 同时用UserTokenGenerator更新token并返回
-
-        response.put("success",true);
-        response.put("msg","登录成功");//ERROR
-        return JsonUtil.toJson(response);
+        return GenerateResponse.generateResponse(true,"000");
     }
 }

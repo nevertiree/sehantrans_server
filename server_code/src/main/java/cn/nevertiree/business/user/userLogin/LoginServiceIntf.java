@@ -5,10 +5,10 @@ package cn.nevertiree.business.user.userLogin;
  */
 public interface LoginServiceIntf {
 
-    public boolean checkName(String name);
+    boolean hasLoginName(String name);
 
-    public boolean checkPwd(String name, String pwd);
+    boolean isRightPwd(String name, String pwd);
 
-    public boolean checkToken(String name,String token);
+    boolean checkToken(String name,String token);
 
 }

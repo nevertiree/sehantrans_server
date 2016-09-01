@@ -7,5 +7,7 @@ import cn.nevertiree.business.user.userRegister.dvo.RegisterVO;
  */
 public interface RegisterServiceIntf {
 
+    boolean hasLoginName(String name);
+
     String createUser(RegisterVO registerVO);
 }

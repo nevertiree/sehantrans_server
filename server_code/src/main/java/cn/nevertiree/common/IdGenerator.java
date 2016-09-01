@@ -71,10 +71,32 @@ public class IdGenerator {
         return name+date+randomValue;
     }
 
+    //返回初始值和注册时间以及一串随机字符
+    public static String getOriginId(){
+        //用户注册日
+        String date = (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(new Date());
+
+        //随机值
+        String randomValue=getRandomString(32);
+
+        //没有加密过的No
+        return date+randomValue;
+    }
+
+
     //把初始的值通过SHA-512算法处理生成唯一的64位数字签名
     public static String getHashId(String name){
         //取的混合name
         String originName = getOriginId(name);
+        //取的加密后的混合name
+        String encodeName = convertByteToHexString(sha(originName));
+        //取前16位
+        return encodeName.substring(0,63);
+    }
+
+    public static String getHashId(){
+        //取的混合name
+        String originName = getOriginId();
         //取的加密后的混合name
         String encodeName = convertByteToHexString(sha(originName));
         //取前16位
