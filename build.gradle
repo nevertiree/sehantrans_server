@@ -1,0 +1,69 @@
+group 'nevertiree'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'war'
+
+sourceCompatibility = 1.5
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    springVersion = '4.2.6.RELEASE'
+    hibernateVersion='4.1.6.Final'
+    jacksonVersion='2.6.0'
+}
+
+// 解决编码GBK的不可映射字符
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+task copyJars(type: Copy) {
+    from(configurations.runtime)
+    into 'libs' // 目标位置
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile(
+            "mysql:mysql-connector-java:5.1.34",
+            "org.json:json:20141113",
+            "commons-logging:commons-logging:1.2",
+            "org.aspectj:aspectjweaver:1.5.4",
+            "org.springframework:spring-webmvc:${springVersion}",
+            "org.springframework:spring-orm:${springVersion}",
+            "org.springframework:spring-aop:${springVersion}",
+            "org.springframework:spring-tx:${springVersion}",
+            "org.springframework:spring-context:${springVersion}",
+            "org.springframework:spring-context-support:${springVersion}",
+            "org.springframework:spring-test:${springVersion}",
+            "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}",
+            "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}",
+            "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}",
+            "org.mybatis:mybatis:3.2.8",
+            'org.mybatis:mybatis-spring:1.2.2',
+            'log4j:log4j:1.2.16',
+            "org.mockito:mockito-all:1.9.5",
+            "javax.mail:mail:1.4.7"
+    )
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.7'
+
+    //用于管理mysql链接池
+    compile group: 'commons-io', name: 'commons-io', version: '2.5'
+
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2
+    compile group: 'org.apache.commons', name: 'commons-dbcp2', version: '2.1.1'
+
+    //servlet必须设置成providedCompile
+    providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.0.1'
+
+    // https://mvnrepository.com/artifact/org.mybatis.generator/mybatis-generator-core
+    compile group: 'org.mybatis.generator', name: 'mybatis-generator-core', version: '1.3.5'
+
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+}
+
