@@ -46,7 +46,7 @@ public class Userbase {
      *
      * @mbg.generated
      */
-    private Integer mobile;
+    private String mobile;
 
     /**
      *
@@ -90,7 +90,7 @@ public class Userbase {
      *
      * @mbg.generated
      */
-    public Userbase(String no, String name, String gender, Date birth, Integer mobile, String email, String portrait, String introduction, Date registertime) {
+    public Userbase(String no, String name, String gender, Date birth, String mobile, String email, String portrait, String introduction, Date registertime) {
         this.no = no;
         this.name = name;
         this.gender = gender;
@@ -158,7 +158,7 @@ public class Userbase {
      *
      * @mbg.generated
      */
-    public Integer getMobile() {
+    public String getMobile() {
         return mobile;
     }
 

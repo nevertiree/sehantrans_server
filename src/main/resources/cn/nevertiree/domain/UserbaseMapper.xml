@@ -11,7 +11,7 @@
       <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="gender" javaType="java.lang.String" jdbcType="CHAR" />
       <arg column="birth" javaType="java.util.Date" jdbcType="TIMESTAMP" />
-      <arg column="mobile" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="mobile" javaType="java.lang.String" jdbcType="CHAR" />
       <arg column="email" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="portrait" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="introduction" javaType="java.lang.String" jdbcType="VARCHAR" />
@@ -25,12 +25,6 @@
     -->
     no, name, gender, birth, mobile, email, portrait, introduction, registerTime
   </sql>
-
-
-  <insert id="initialByEmail">
-     insert into userbase (no, name,email) values (#{0}, #{1}, #{2});
-  </insert>
-
   <insert id="insertSelective" parameterType="cn.nevertiree.domain.Userbase">
     <!--
       WARNING - @mbg.generated
@@ -80,7 +74,7 @@
         #{birth,jdbcType=TIMESTAMP},
       </if>
       <if test="mobile != null">
-        #{mobile,jdbcType=INTEGER},
+        #{mobile,jdbcType=CHAR},
       </if>
       <if test="email != null">
         #{email,jdbcType=VARCHAR},
@@ -113,7 +107,7 @@
         birth = #{birth,jdbcType=TIMESTAMP},
       </if>
       <if test="mobile != null">
-        mobile = #{mobile,jdbcType=INTEGER},
+        mobile = #{mobile,jdbcType=CHAR},
       </if>
       <if test="email != null">
         email = #{email,jdbcType=VARCHAR},
