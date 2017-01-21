@@ -48,7 +48,6 @@ CREATE TABLE IF NOT EXISTS orderInfo(
   orderTime      DATETIME       DEFAULT now(), #交易时间
   logisticsNo    CHAR(64)       NOT NULL       #物流单号
 #  orderStatus    SET("","","")
-
 )CHARACTER SET  = utf8;
 
 show TABLES ;
