@@ -63,6 +63,9 @@ dependencies {
     // https://mvnrepository.com/artifact/org.mybatis.generator/mybatis-generator-core
     compile group: 'org.mybatis.generator', name: 'mybatis-generator-core', version: '1.3.5'
 
+    // https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-catalina
+    compile group: 'org.apache.tomcat', name: 'tomcat-catalina', version: '9.0.0.M15'
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
 }
