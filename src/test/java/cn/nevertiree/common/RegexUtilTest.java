@@ -1,8 +1,5 @@
 package cn.nevertiree.common;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -15,14 +12,15 @@ public class RegexUtilTest {
     @Test
     public void correctEmail() throws Exception {
         // right
-        assertEquals(true,RegexUtil.correctEmail("nevertiree@wlx.com"));
-        assertEquals(true,RegexUtil.correctEmail("nevertiree@bjfu.edu.cn"));
-        assertEquals(true,RegexUtil.correctEmail("lance.wang@wlx.com"));
-        assertEquals(true,RegexUtil.correctEmail("lance.wang@bjfu.edu.cn"));
+        assertEquals(true,RegexUtil.checkEmail("nevertiree@wlx.com"));
+        assertEquals(true,RegexUtil.checkEmail("nevertiree@bjfu.edu.cn"));
+        assertEquals(true,RegexUtil.checkEmail("lance.wang@wlx.com"));
+        assertEquals(true,RegexUtil.checkEmail("lance.wang@bjfu.edu.cn"));
         //false
-        assertEquals(false,RegexUtil.correctEmail("@bjfu.edu.cn"));
-        assertEquals(false,RegexUtil.correctEmail("lance.wang@"));
-        assertEquals(false,RegexUtil.correctEmail("lance.wang.bjfu.edu.cn"));
+        assertEquals(false,RegexUtil.checkEmail(""));
+        assertEquals(false,RegexUtil.checkEmail("@bjfu.edu.cn"));
+        assertEquals(false,RegexUtil.checkEmail("lance.wang@"));
+        assertEquals(false,RegexUtil.checkEmail("lance.wang.bjfu.edu.cn"));
 
     }
 
@@ -30,16 +28,37 @@ public class RegexUtilTest {
     @Test
     public void correctMobile() throws Exception {
         // right
-        assertEquals(true,RegexUtil.correctMobile("18912345678"));
+        assertEquals(true,RegexUtil.checkMobile("18912345678"));
         // wrong
-        assertEquals(false,RegexUtil.correctMobile(""));
-        assertEquals(false,RegexUtil.correctMobile("1891234567"));
-        assertEquals(false,RegexUtil.correctMobile("189123456789"));
-        assertEquals(false,RegexUtil.correctMobile("189123456789"));
-        assertEquals(false,RegexUtil.correctMobile("abc"));
-        assertEquals(false,RegexUtil.correctMobile("010"));
-        assertEquals(false,RegexUtil.correctMobile("asdffda"));
-
+        assertEquals(false,RegexUtil.checkMobile(""));
+        assertEquals(false,RegexUtil.checkMobile("1891234567"));
+        assertEquals(false,RegexUtil.checkMobile("189123456789"));
+        assertEquals(false,RegexUtil.checkMobile("189123456789"));
+        assertEquals(false,RegexUtil.checkMobile("abc"));
+        assertEquals(false,RegexUtil.checkMobile("010"));
+        assertEquals(false,RegexUtil.checkMobile("asdffda"));
     }
 
+    @Test
+    public void correctPassword() throws Exception {
+        // right
+        assertEquals(true,RegexUtil.checkPassword("server123"));
+        assertEquals(true,RegexUtil.checkPassword("123server"));
+        // too short
+        assertEquals(false,RegexUtil.checkPassword(""));
+        assertEquals(false,RegexUtil.checkPassword("123"));
+        // too long
+        assertEquals(false,RegexUtil.checkPassword("server123456789123456789"));
+        assertEquals(false,RegexUtil.checkPassword("qwerrtyuuiopasdffgjh12349"));
+        // not digit
+        assertEquals(false,RegexUtil.checkPassword("qwerrtyuh"));
+        assertEquals(false,RegexUtil.checkPassword("qwerrti"));
+        // not char
+        assertEquals(false,RegexUtil.checkPassword("123456"));
+        assertEquals(false,RegexUtil.checkPassword("123456789"));
+        // have special
+        assertEquals(false,RegexUtil.checkPassword("wlx$123456"));
+        assertEquals(false,RegexUtil.checkPassword("wlx*123456"));
+
+    }
 }
