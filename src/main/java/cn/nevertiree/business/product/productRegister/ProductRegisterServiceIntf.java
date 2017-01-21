@@ -1,7 +1,13 @@
 package cn.nevertiree.business.product.productRegister;
 
+import cn.nevertiree.domain.Productbase;
+
 /**
  * Created by lance on 17-1-21.
  */
-public class ProductRegisterServiceIntf {
+
+public interface ProductRegisterServiceIntf {
+
+    boolean createProduct(Productbase productbase);
+
 }
