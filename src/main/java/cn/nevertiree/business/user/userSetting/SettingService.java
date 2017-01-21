@@ -59,4 +59,14 @@ public class SettingService implements SettingServiceIntf{
         }
     }
 
+    public boolean modifyMobile(String no,String tel){
+        try {
+            int affectCount = userbaseMapper.setMobile(no, tel);
+            return (affectCount == 1);
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }

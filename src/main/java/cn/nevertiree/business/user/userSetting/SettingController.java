@@ -30,6 +30,11 @@ public class SettingController {
     public String settingPassword(@RequestParam(value = "no") String no,@RequestParam(value = "password") String password){
         //update userlogin set password = #{1} where no = #{0}
         boolean successModify = settingService.modifyPassword(no,password);
+
+        // TODO: 17-1-21
+        // 1. 要先输入原始密码，确认无误后才能更新
+        // 2. 修正无论如何都可以返回正确值的问题
+
         return (successModify)?GenerateResponse.generateResponse(true,"100"):GenerateResponse.generateResponse(false,"200");
     }
 
@@ -44,6 +49,7 @@ public class SettingController {
     // 修改性别
     @RequestMapping(value = "gender",method = RequestMethod.GET,produces = "text/plain;charset=UTF-8")
     @ResponseBody
+    // TODO: 17-1-21 添加正则表达式验证
     public String settingGender(@RequestParam(value = "no") String no,@RequestParam(value = "gender") String gender){
         boolean isSuccess = settingService.modifyGender(no,gender);
         return (isSuccess)?GenerateResponse.generateResponse(true,"100"):GenerateResponse.generateResponse(false,"200");    }
@@ -52,6 +58,7 @@ public class SettingController {
     @RequestMapping(value = "birth",method = RequestMethod.GET,produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String settingBirth(@RequestParam(value = "no") String no,@RequestParam(value = "birth") String birthString){
+        // TODO: 17-1-21 添加正则表达式验证
         try
         {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -65,6 +72,14 @@ public class SettingController {
             return GenerateResponse.generateResponse(false,"200");
         }
     }
-    
+
+    // 修改手机号
+    @RequestMapping(value = "tel",method = RequestMethod.GET,produces = "text/plain;charset=UTF-8")
+    @ResponseBody
+    public String settingTel(@RequestParam(value = "no") String no,@RequestParam(value="tel") String tel){
+        // TODO: 17-1-21 添加正则表达式验证
+        boolean isSuccess = settingService.modifyMobile(no,tel);
+        return (isSuccess)?GenerateResponse.generateResponse(true,"100"):GenerateResponse.generateResponse(false,"200");
+    }
 
 }
