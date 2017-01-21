@@ -16,6 +16,14 @@ public class RegexUtilTest {
     public void correctEmail() throws Exception {
         // right
         assertEquals(true,RegexUtil.correctEmail("nevertiree@wlx.com"));
+        assertEquals(true,RegexUtil.correctEmail("nevertiree@bjfu.edu.cn"));
+        assertEquals(true,RegexUtil.correctEmail("lance.wang@wlx.com"));
+        assertEquals(true,RegexUtil.correctEmail("lance.wang@bjfu.edu.cn"));
+        //false
+        assertEquals(false,RegexUtil.correctEmail("@bjfu.edu.cn"));
+        assertEquals(false,RegexUtil.correctEmail("lance.wang@"));
+        assertEquals(false,RegexUtil.correctEmail("lance.wang.bjfu.edu.cn"));
+
     }
 
 
