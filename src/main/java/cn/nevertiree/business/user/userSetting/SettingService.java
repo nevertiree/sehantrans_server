@@ -2,6 +2,7 @@ package cn.nevertiree.business.user.userSetting;
 
 import cn.nevertiree.business.dao.UserbaseMapper;
 import cn.nevertiree.business.dao.UserloginMapper;
+import cn.nevertiree.domain.Userbase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,10 @@ public class SettingService implements SettingServiceIntf{
 
     @Autowired
     UserbaseMapper userbaseMapper;
+
+    public Userbase getDetail(String no){
+        return userbaseMapper.selectByPrimaryKey(no);
+    }
 
     public boolean modifyPassword(String no,String password){
         try{
@@ -63,6 +68,16 @@ public class SettingService implements SettingServiceIntf{
         try {
             int affectCount = userbaseMapper.setMobile(no, tel);
             return (affectCount == 1);
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean modfifyEmail(String no,String email){
+        try{
+            // affectCount =? 1
+            return  (userbaseMapper.setEmail(no,email)+userloginMapper.setEmail(no,email)==2);
         }catch (Exception e){
             e.printStackTrace();
             return false;

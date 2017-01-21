@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Scope("prototype")
 @Controller
-@RequestMapping("/register")
+@RequestMapping("/user/register")
 public class RegisterController {
 
     @Autowired
