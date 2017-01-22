@@ -24,9 +24,9 @@
 
 暂时不支持
 
-## 修改信息
+## 修改用户信息
 
-0. 取得信息
+0. 取得商品信息
 
 输入待查询的用户ID
 `
@@ -83,5 +83,44 @@ http://localhost:8080/api/user/setting/detail?no=userno
 
 输入商品名字、用户ID、价格和商品种类
 
-`http://localhost:8080/api/product/register?product=pname&seller=sellerId&price=price&catalog=catalog`
+`http://localhost:8080/api/product/release?product=pname&seller=sellerId&price=price&catalog=catalog`
 
+返回值 100 成功
+返回值 200 服务器失败
+
+## 修改商品信息
+
+0. 取得商品信息
+
+`http://localhost:8080/api/product/setting/baseinfo?no=no`
+
+返回值 100 成功
+返回值 200 服务器失败
+
+1. 修改商品名称
+
+`http://localhost:8080/api/product/setting/name?no=no&name=name`
+
+返回值 100 成功
+返回值 200 服务器失败
+
+2. 修改商品数量
+
+`http://localhost:8080/api/product/setting/quantity?no=no&quantity=quantity`
+
+返回值 100 成功
+返回值 200 服务器失败
+
+3. 修改商品价格
+
+`http://localhost:8080/api/product/setting/price?no=no&price=123.45`
+
+返回值 100 成功
+返回值 200 服务器失败
+
+4. 修改商品类别
+
+`http://localhost:8080/api/product/setting/catalog?no=no&catalog=new_catalog`
+
+返回值 100 成功
+返回值 200 服务器失败
