@@ -1,4 +1,4 @@
-package cn.nevertiree.business.product.productRegister;
+package cn.nevertiree.business.product.productRelease;
 
 import cn.nevertiree.business.dao.UserbaseMapper;
 import cn.nevertiree.common.GenerateResponse;
@@ -21,14 +21,14 @@ import java.util.Date;
 @Scope("prototype")
 @Controller
 @RequestMapping(value = "product")
-public class ProductRegisterController {
+public class ProductReleaseController {
 
     @Autowired
     UserbaseMapper userbaseMapper;
     @Autowired
-    ProductRegisterService productRegisterService;
+    ProductReleaseService productReleaseService;
 
-    @RequestMapping(value = "register")
+    @RequestMapping(value = "release")
     @ResponseBody
     public String registerProduct(@RequestParam(value = "product") String product, @RequestParam(value = "seller") String seller, @RequestParam(value = "price") double priceD,@RequestParam(value = "catalog") String catalog){
 
@@ -42,12 +42,14 @@ public class ProductRegisterController {
         // 构造VO
         Productbase productbase = new Productbase(productNo,product,seller,sellerName,0,price,catalog,"","",new Date());
 
-        boolean isSuccess = productRegisterService.createProduct(productbase);
+        boolean isSuccess = productReleaseService.createProduct(productbase);
 
         if (isSuccess){
             return GenerateResponse.generateResponse(true,"100");
         }else
             return GenerateResponse.generateResponse(false,"200");
+
+
     }
 
 }

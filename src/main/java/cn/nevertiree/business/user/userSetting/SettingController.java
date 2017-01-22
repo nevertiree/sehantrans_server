@@ -25,9 +25,9 @@ import java.util.Date;
 public class SettingController {
 
     @Autowired
-    SettingService settingService;
+    private SettingService settingService;
     @Autowired
-    LoginService loginService;
+    private LoginService loginService;
 
     //获取信息
     @RequestMapping(value = "detail",method = RequestMethod.GET,produces = "text/plain;charset=UTF-8")

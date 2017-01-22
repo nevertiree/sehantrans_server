@@ -1,4 +1,4 @@
-package cn.nevertiree.business.product.productRegister;
+package cn.nevertiree.business.product.productRelease;
 
 import cn.nevertiree.business.dao.ProductbaseMapper;
 import cn.nevertiree.domain.Productbase;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class ProductRegisterService implements ProductRegisterServiceIntf{
+public class ProductReleaseService implements ProductReleaseServiceIntf {
 
     @Autowired
     ProductbaseMapper productbaseMapper;
