@@ -77,4 +77,15 @@ public class ProductSettingService implements ProductSettingServiceIntf{
         }
     }
 
+    //5. 删除商品
+    public boolean deleteProduct(String no){
+        try {
+            productbaseMapper.deleteByPrimaryKey(no);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }

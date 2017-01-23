@@ -84,4 +84,16 @@ public class ProductSettingController {
         }
     }
 
+    //5. 删除商品
+    @RequestMapping(value = "/delete",method = RequestMethod.GET,produces = "text/plain;charset=UTF-8")
+    @ResponseBody
+    public String deleteProduct(@RequestParam(value = "no") String no){
+        boolean isSuccess = productSettingService.deleteProduct(no);
+        if (isSuccess){
+            return GenerateResponse.generateResponse(true,"100");
+        }else {
+            return GenerateResponse.generateResponse(false,"200");
+        }
+    }
+
 }
