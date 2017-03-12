@@ -41,4 +41,16 @@ public class RegexUtil {
         return matcher.find();
     }
 
+    public static String getNameFromEmail(String email){
+        //从Email中截取出名字
+        Pattern pattern = Pattern.compile("^((\\w)+(\\.\\w+)*)@(\\w)+((\\.\\w+)+)$");
+        Matcher matcher = pattern.matcher(email);
+        if (matcher.find()){
+            String name = matcher.group().replaceAll("@(\\w)+((\\.\\w+)+)$","");
+            // 如果名字太长，只返回前十个字节
+            return name.length()>10 ? name.substring(0,10):name;
+        }
+        return "New User";
+    }
+
 }

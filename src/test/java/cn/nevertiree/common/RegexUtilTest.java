@@ -61,4 +61,19 @@ public class RegexUtilTest {
         assertEquals(false,RegexUtil.checkPassword("wlx*123456"));
 
     }
+
+    @Test
+    public void getNameFromEmail() throws Exception {
+        // 不是正规邮箱
+        assertEquals("New User",RegexUtil.getNameFromEmail("server123"));
+        assertEquals("New User",RegexUtil.getNameFromEmail("123server"));
+        // 截取前面名字
+        assertEquals("server123",RegexUtil.getNameFromEmail("server123@126.com"));
+        assertEquals("server.123",RegexUtil.getNameFromEmail("server.123@126.com"));
+        // 截取超长名字
+        assertEquals("1234567890",RegexUtil.getNameFromEmail("1234567890123456789@126.com"));
+        assertEquals("abcdefjhij",RegexUtil.getNameFromEmail("abcdefjhijklmnop@126.com"));
+
+    }
+
 }
