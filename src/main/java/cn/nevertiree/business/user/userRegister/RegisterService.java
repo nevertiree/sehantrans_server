@@ -2,6 +2,7 @@ package cn.nevertiree.business.user.userRegister;
 
 import cn.nevertiree.business.dao.UserbaseMapper;
 import cn.nevertiree.business.dao.UserloginMapper;
+import cn.nevertiree.common.RegexUtil;
 import cn.nevertiree.domain.Userlogin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,7 +32,8 @@ public class RegisterService implements RegisterServiceIntf{
 
     public boolean initialBaseByEmail(String no,String email){
         try{
-            int affectCount = userbaseMapper.initialByEmail(no,email,email);
+            String name = RegexUtil.getNameFromEmail(email);
+            int affectCount = userbaseMapper.initialByEmail(no,name,email);
             return (affectCount==1);
         }catch (Exception e){
             e.printStackTrace();

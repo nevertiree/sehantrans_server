@@ -30,7 +30,7 @@ public class SettingController {
     private LoginService loginService;
 
     //获取信息
-    @RequestMapping(value = "detail",method = RequestMethod.GET,produces = "text/plain;charset=UTF-8")
+    @RequestMapping(value = "detail",produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String getDetail(@RequestParam(value = "no") String no){
         Userbase userbase = settingService.getDetail(no);
@@ -41,7 +41,7 @@ public class SettingController {
     }
 
     // 修改密码
-    @RequestMapping(value = "password",method = RequestMethod.GET,produces = "text/plain;charset=UTF-8")
+    @RequestMapping(value = "password",produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String settingPassword(@RequestParam(value = "no") String no,@RequestParam(value = "password") String password){
         //update userlogin set password = #{1} where no = #{0}
@@ -58,7 +58,7 @@ public class SettingController {
     }
 
     // 修改名字
-    @RequestMapping(value = "name",method = RequestMethod.GET,produces = "text/plain;charset=UTF-8")
+    @RequestMapping(value = "name",produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String settingName(@RequestParam(value = "no") String no,@RequestParam(value = "name") String name){
         boolean isSuccess = settingService.modifyName(no,name);
@@ -66,7 +66,7 @@ public class SettingController {
     }
 
     // 修改性别
-    @RequestMapping(value = "gender",method = RequestMethod.GET,produces = "text/plain;charset=UTF-8")
+    @RequestMapping(value = "gender",produces = "text/plain;charset=UTF-8")
     @ResponseBody
     // TODO: 17-1-21 添加正则表达式验证
     public String settingGender(@RequestParam(value = "no") String no,@RequestParam(value = "gender") String gender){
@@ -74,7 +74,7 @@ public class SettingController {
         return (isSuccess)?GenerateResponse.generateResponse(true,"100"):GenerateResponse.generateResponse(false,"200");    }
 
     // 修改生日
-    @RequestMapping(value = "birth",method = RequestMethod.GET,produces = "text/plain;charset=UTF-8")
+    @RequestMapping(value = "birth",produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String settingBirth(@RequestParam(value = "no") String no,@RequestParam(value = "birth") String birthString){
         try
@@ -92,7 +92,7 @@ public class SettingController {
     }
 
     // 修改手机号
-    @RequestMapping(value = "mobile",method = RequestMethod.GET,produces = "text/plain;charset=UTF-8")
+    @RequestMapping(value = "mobile",produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String settingTMobile(@RequestParam(value = "no") String no,@RequestParam(value="mobile") String mobile){
         if(!RegexUtil.checkMobile(mobile))
@@ -103,7 +103,7 @@ public class SettingController {
 
 
     // 修改Email
-    @RequestMapping(value = "email",method = RequestMethod.GET,produces = "text/plain;charset=UTF-8")
+    @RequestMapping(value = "email",produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String settingEmail(@RequestParam(value = "no") String no,@RequestParam(value="email") String email){
         if (!RegexUtil.checkEmail(email))

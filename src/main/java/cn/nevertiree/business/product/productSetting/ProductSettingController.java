@@ -25,7 +25,7 @@ public class ProductSettingController {
     private ProductSettingService productSettingService;
 
     //0. 取得商品信息
-    @RequestMapping(value = "/baseinfo",method = RequestMethod.GET,produces = "text/plain;charset=UTF-8")
+    @RequestMapping(value = "/baseinfo",produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String getBaseInfo(@RequestParam(value = "no") String no){
         Productbase productbase = productSettingService.getBaseInfo(no);
@@ -37,7 +37,7 @@ public class ProductSettingController {
     }
 
     //1. 修改商品名称
-    @RequestMapping(value = "/name",method = RequestMethod.GET,produces = "text/plain;charset=UTF-8")
+    @RequestMapping(value = "/name",produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String modifyName(@RequestParam(value = "no")String no, @RequestParam(value = "name")String name){
         boolean isSuccess = productSettingService.modifyName(no,name);
@@ -49,7 +49,7 @@ public class ProductSettingController {
     }
 
     //2. 修改商品数量
-    @RequestMapping(value = "/quantity",method = RequestMethod.GET,produces = "text/plain;charset=UTF-8")
+    @RequestMapping(value = "/quantity",produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String modifyQuantity(@RequestParam(value = "no")String no, @RequestParam(value = "quantity")int quantity){
         boolean isSuccess = productSettingService.modifyQuantity(no,quantity);
@@ -61,7 +61,7 @@ public class ProductSettingController {
     }
 
     //3. 修改商品价格
-    @RequestMapping(value = "/price",method = RequestMethod.GET,produces = "text/plain;charset=UTF-8")
+    @RequestMapping(value = "/price",produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String modifyPrice(@RequestParam(value = "no")String no, @RequestParam(value = "price")String price){
         boolean isSuccess = productSettingService.modifyPrice(no,new BigDecimal(price));
@@ -73,7 +73,7 @@ public class ProductSettingController {
     }
 
     //4. 修改商品类别
-    @RequestMapping(value = "/catalog",method = RequestMethod.GET,produces = "text/plain;charset=UTF-8")
+    @RequestMapping(value = "/catalog",produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String modifyCatalog(@RequestParam(value = "no")String no, @RequestParam(value = "catalog")String catalog){
         boolean isSuccess = productSettingService.modifyCatalog(no,catalog);
@@ -85,7 +85,7 @@ public class ProductSettingController {
     }
 
     //5. 删除商品
-    @RequestMapping(value = "/delete",method = RequestMethod.GET,produces = "text/plain;charset=UTF-8")
+    @RequestMapping(value = "/delete",produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String deleteProduct(@RequestParam(value = "no") String no){
         boolean isSuccess = productSettingService.deleteProduct(no);

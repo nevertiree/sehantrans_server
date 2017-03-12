@@ -10,7 +10,7 @@ public interface UserloginMapper {
     //本法用于再注册时判断用户民是否唯一
     @Select({
             "select count(*) ",
-            "from userLogin",
+            "from userlogin",
             "where username = #{0}"
     })
     @ResultType(Integer.class)
@@ -19,7 +19,7 @@ public interface UserloginMapper {
     //本法用于检查用户的名字和密码
     @Select({
             "select count(*)",
-            "from userLogin",
+            "from userlogin",
             "where username = #{0}",
             "and password = #{1}"
     })
@@ -29,7 +29,7 @@ public interface UserloginMapper {
     /**获取密码*/
     @Select({
             "select password",
-            "from userLogin",
+            "from userlogin",
             "where no =#{0}"
     })
     String getPwd(String no);

@@ -18,7 +18,7 @@ public class LoginController {
     LoginServiceIntf loginServiceIntf;
 
     //以password的手段登录（假设还有其他的手段）
-    @RequestMapping(value = "/common",method = RequestMethod.GET ,produces = "text/plain;charset=UTF-8")
+    @RequestMapping(value = "/common",produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String loginByPwd(@RequestParam(value = "loginName") String loginName,@RequestParam(value = "password") String password){
 

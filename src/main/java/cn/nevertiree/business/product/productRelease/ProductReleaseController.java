@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -28,7 +29,7 @@ public class ProductReleaseController {
     @Autowired
     ProductReleaseService productReleaseService;
 
-    @RequestMapping(value = "release")
+    @RequestMapping(value = "release" ,produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String registerProduct(@RequestParam(value = "product") String product, @RequestParam(value = "seller") String seller, @RequestParam(value = "price") double priceD,@RequestParam(value = "catalog") String catalog){
 

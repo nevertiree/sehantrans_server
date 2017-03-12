@@ -14,6 +14,9 @@ import java.util.Date;
 public interface UserbaseMapper {
 
     // initial by email
+    @Insert({
+            "insert into userbase(no,name,email) values (#{0},#{1},#{2})"
+    })
     int initialByEmail(String no,String name,String email);
 
     /**获取或者修改名字*/
