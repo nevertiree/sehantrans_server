@@ -88,7 +88,7 @@
         </javaClientGenerator>
 
         <!-- 要生成什么表就该什么tableName和domainObjectName 生成多个表就复制几段-->
-        <table tableName="userbase" domainObjectName="" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="orderinfo" domainObjectName="" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
 
     </context>
 </generatorConfiguration>

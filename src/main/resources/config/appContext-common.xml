@@ -72,6 +72,9 @@
         <property name="dataSource" ref="dataSource" />
     </bean>
 
+    <!-- 事务注解驱动，标注@Transactional的类和方法将具有事务性 -->
+    <tx:annotation-driven transaction-manager="transactionManager" />
+
     <!--MyBatis-Spring系统的核心:配置sqlSessionFactory-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <!--引入数据源-->
