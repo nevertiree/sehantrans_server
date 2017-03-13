@@ -16,15 +16,15 @@ public interface UserloginMapper {
     @ResultType(Integer.class)
     int hasLoginName(String name);
 
-    //本法用于检查用户的名字和密码
+    //本法用于检查用户的名字和密码 如果正确则返回no
     @Select({
-            "select count(*)",
+            "select no",
             "from userlogin",
             "where username = #{0}",
             "and password = #{1}"
     })
-    @ResultType(Integer.class)
-    int isRightPwd(String name, String pwd);
+    @ResultType(String.class)
+    String isRightPwd(String name, String pwd);
 
     /**获取密码*/
     @Select({

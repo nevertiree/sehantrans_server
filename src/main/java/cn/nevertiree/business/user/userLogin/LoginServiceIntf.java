@@ -7,7 +7,7 @@ public interface LoginServiceIntf {
 
     boolean hasLoginName(String name);
 
-    boolean isRightPwd(String name, String pwd);
+    String isRightPwd(String name, String pwd);
 
     boolean checkToken(String name, String token);
 

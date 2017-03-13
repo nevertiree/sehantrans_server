@@ -19,9 +19,9 @@ public class LoginService implements LoginServiceIntf{
     }
 
     //输入用户名和密码
-    public boolean isRightPwd(String name ,String pwd){
+    public String isRightPwd(String name ,String pwd){
         //密码和用户名同时符合的结果条数（通常不是0就是1)为零就说明登录fail
-        return (userloginMapper.isRightPwd(name,pwd)==1);
+        return userloginMapper.isRightPwd(name,pwd);
     }
 
     public boolean checkToken(String name,String token){

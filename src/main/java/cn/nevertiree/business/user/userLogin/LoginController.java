@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class LoginController {
 
     @Autowired
-    LoginServiceIntf loginServiceIntf;
+    LoginService loginService;
 
     //以password的手段登录（假设还有其他的手段）
     @RequestMapping(value = "/common",produces = "text/plain;charset=UTF-8")
@@ -33,21 +33,21 @@ public class LoginController {
         // TODO: 验证用户名-token和用户名-密码
 
         //1.调用checkName函数验证 返回boolean 如果错误说明用户名不存在
-        boolean hasName = loginServiceIntf.hasLoginName(loginName);
+        boolean hasName = loginService.hasLoginName(loginName);
         if (!hasName)
             return GenerateResponse.generateResponse(false,"100");
 
         //2.调用checkPwd函数验证 返回boolean 如果错误说明密码错误或者用户名输入错误
             //select count(*) from userSecurity where name = "name" and pwd = "pwd";
 
-        boolean isRightPwd = loginServiceIntf.isRightPwd(loginName,password);
-        if (!isRightPwd)
+        String no = loginService.isRightPwd(loginName,password);
+        if (no.equals(null))
             return GenerateResponse.generateResponse(false,"200");
 
         //3.调用checkToken函数验证 返回boolean 如果错误说明非本机登录
 
         //4.以上3方面同时成功时返回success 同时用UserTokenGenerator更新token并返回 undo
 
-        return GenerateResponse.generateResponse(true,"000");
+        return GenerateResponse.generateResponse(true,"000",no);
     }
 }
