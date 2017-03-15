@@ -41,7 +41,7 @@ http://localhost:8080/api/user/setting/detail?no=userno
 
 在以下地址输入用户唯一No和新密码，新密码同样要准守规范。
 
-`localhost:8080/api/setting/password?no=001&password=newpassword`
+`localhost:8080/api/user/setting/password?no=001&password=newpassword`
 
 返回值 100 成功
 返回值 200 服务器失败
