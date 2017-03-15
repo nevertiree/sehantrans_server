@@ -55,13 +55,13 @@ http://localhost:8080/api/user/setting/detail?no=userno
 
 性别的值为0 1 2，分别是男、女和保密
 
-`localhost:8080/api/user/setting/name?no=001&gender=new_gender`
+`localhost:8080/api/user/setting/gender?no=001&gender=new_gender`
 
 4. 修改生日
 
 生日一定要符合`yyyy-mm-dd`的格式
 
-`localhost:8080/api/user/setting/name?no=001&birth=yyyy-mm-dd`
+`localhost:8080/api/user/setting/birth?no=001&birth=yyyy-mm-dd`
 
 返回值 100 成功
 返回值 200 服务器失败
