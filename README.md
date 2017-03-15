@@ -6,7 +6,9 @@
 
 注册时输入Email地址和密码
 
-`localhost:8080/api/register/email?email=example@gmail.com&password=mypassword`
+`
+localhost:8080/api/user/register/email?email=example@gmail.com&password=mypassword
+`
 
 2. 通过电话号码注册
 
@@ -18,7 +20,9 @@
 
 在以下网址输入邮箱和密码，密码控制只能输入字母和数字、不能有特殊符号(~!@#$%^&*()_+[]{}|\;:'",./<>?)，长度介于6-20位。
 
-`localhost:8080/api/login/common?loginName=myname&password=mypassword`
+`
+localhost:8080/api/user/login/common?loginName=myname&password=mypassword
+`
 
 2. 指纹登录
 
@@ -26,7 +30,7 @@
 
 ## 修改用户信息
 
-0. 取得商品信息
+0. 取得用户信息
 
 输入待查询的用户ID
 `
@@ -45,19 +49,19 @@ http://localhost:8080/api/user/setting/detail?no=userno
 
 2. 修改名字
 
-`localhost:8080/api/setting/name?no=001&name=newname`
+`localhost:8080/api/user/setting/name?no=001&name=newname`
 
 3. 修改性别
 
 性别的值为0 1 2，分别是男、女和保密
 
-`localhost:8080/api/setting/name?no=001&gender=new_gender`
+`localhost:8080/api/user/setting/name?no=001&gender=new_gender`
 
 4. 修改生日
 
 生日一定要符合`yyyy-mm-dd`的格式
 
-`localhost:8080/api/setting/name?no=001&birth=yyyy-mm-dd`
+`localhost:8080/api/user/setting/name?no=001&birth=yyyy-mm-dd`
 
 返回值 100 成功
 返回值 200 服务器失败
@@ -65,7 +69,7 @@ http://localhost:8080/api/user/setting/detail?no=userno
 
 5. 修改手机号码
 
-`localhost:8080/api/setting/mobile?no=001&mobile=18911223344`
+`localhost:8080/api/user/setting/mobile?no=001&mobile=18911223344`
 
 返回值 100 成功
 返回值 200 服务器失败
@@ -73,7 +77,7 @@ http://localhost:8080/api/user/setting/detail?no=userno
 
 6. 修改电子邮箱
 
-`localhost:8080/api/setting/email?no=001&email=new_email`
+`localhost:8080/api/user/setting/email?no=001&email=new_email`
 
 返回值 100 成功
 返回值 200 服务器失败
@@ -124,3 +128,12 @@ http://localhost:8080/api/user/setting/detail?no=userno
 
 返回值 100 成功
 返回值 200 服务器失败
+
+5. 删除一个商品
+
+`http://localhost:8080/api/product/setting/delete?no=no`
+
+返回值 100 成功
+返回值 200 服务器失败
+
+## 订单管理
