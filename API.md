@@ -41,7 +41,9 @@ http://localhost:8080/api/user/setting/detail?no=userno
 
 在以下地址输入用户唯一No和新密码，新密码同样要准守规范。
 
-`localhost:8080/api/user/setting/password?no=001&password=newpassword`
+`
+localhost:8080/api/user/setting/password?no=001&password=newpassword
+`
 
 返回值 100 成功
 返回值 200 服务器失败
@@ -49,7 +51,9 @@ http://localhost:8080/api/user/setting/detail?no=userno
 
 2. 修改名字
 
-`localhost:8080/api/user/setting/name?no=001&name=newname`
+`
+localhost:8080/api/user/setting/name?no=001&name=newname
+`
 
 3. 修改性别
 
@@ -87,10 +91,21 @@ http://localhost:8080/api/user/setting/detail?no=userno
 
 输入商品名字、用户ID、价格和商品种类
 
-`http://localhost:8080/api/product/release?product=pname&seller=sellerId&price=price&catalog=catalog`
+`
+http://localhost:8080/api/product/release?product=pname&seller=sellerId&price=price&catalog=catalog
+`
 
 返回值 100 成功
 返回值 200 服务器失败
+
+## 查询商品
+
+仅设计排序的商品插叙如下
+`
+http://localhost:8080/api/product/search/normal?name=pname&keyword=keyword&mode=mode
+`
+
+其中`name`为商品的名字，`keyword`为排序关键字，目前可供使用的关键字有`商品首字母 name`、`价格 price`、`发布时间 releaseTime`，`mode`为排序的模式，可以填写`降序 desc`或者`升序 asc`
 
 ## 修改商品信息
 
