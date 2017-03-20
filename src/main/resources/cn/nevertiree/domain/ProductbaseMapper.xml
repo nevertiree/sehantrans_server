@@ -29,13 +29,25 @@
   </sql>
 
     <select id="selectByNameDesc" parameterType="String" resultMap="BaseResultMap">
-      select * from productbase where name regexp #{0} order by #{1} desc limit 0,100;
+        SELECT * from productbase where name regexp #{0} order by #{1} desc limit 0,100;
     </select>
 
     <select id="selectByNameAsc" parameterType="String" resultMap="BaseResultMap">
-        select * from productbase where name regexp #{0} order by #{1} asc limit 0,100;
+        SELECT * from productbase where name regexp #{0} order by #{1} asc limit 0,100;
     </select>
 
+    <!--输入ID的List，批量查询-->
+    <select id="selectBatchById" parameterType="java.util.List" resultMap="BaseResultMap">
+        SELECT * FROM productbase
+        <where>
+            no IN
+            <foreach item="no" collection="list" separator="," open="(" close=")" index="">
+                #{no,jdbcType=CHAR}
+            </foreach>
+        </where>
+
+    </select>
+  
 
     <insert id="insertSelective" parameterType="cn.nevertiree.domain.Productbase">
     <!--

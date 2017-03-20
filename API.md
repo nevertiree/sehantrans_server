@@ -159,6 +159,8 @@ http://localhost:8080/api/product/search/normal?name=pname&keyword=keyword&mode=
 http://localhost:8080/api/cart/modify?no=no&cart=cartString
 `
 
+成功示例为`http://localhost:8080/api/cart/query?no=f744178f949243fe2f45f87fe75c42a9ce9fe1c94edf9d932bfa286453fcfa8`
+
 其中`no`为客户ID，返回值 100 成功，返回值 200 服务器失败。
 
 1. 修改或者添加到购物车商品
@@ -169,6 +171,8 @@ http://localhost:8080/api/cart/modify?no=no&cart=cartString
 
 其中`no`为客户ID，`cart`为需要加入购物车的商品ID的标准JSON格式。
 
+成功示例为`http://localhost:8080/api/cart/modify?no=f744178f949243fe2f45f87fe75c42a9ce9fe1c94edf9d932bfa286453fcfa8&cart=["05daf383cbf59f21acca63110392002411b32736143cf4a795ff5afa4d56b3a","0a8be87e9e6ef0b785dd8f72948460c7c30f90d830289a7240d4d669c6c3059","e198e99554d298c4c8c1e6938c70b835cab488e78313a5ea52dee43629971a0"]`
+
 返回值 100 成功
 返回值 200 服务器失败
 
@@ -177,6 +181,8 @@ http://localhost:8080/api/cart/modify?no=no&cart=cartString
 `
 http://localhost:8080/api/cart/delete?no=no
 `
+
+成功示例为`http://localhost:8080/api/cart/delete?no=f744178f949243fe2f45f87fe75c42a9ce9fe1c94edf9d932bfa286453fcfa8`
 
 返回值 100 成功
 返回值 200 服务器失败
