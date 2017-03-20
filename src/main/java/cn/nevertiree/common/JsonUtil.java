@@ -12,4 +12,13 @@ public class JsonUtil {
     public static String toJson(Object object){
         return gson.toJson(object);
     }
+
+    public static Object fromJson(String jsonString,String type){
+        try {
+            return gson.fromJson(jsonString,Class.forName(type));
+        }catch (ClassNotFoundException e){
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
