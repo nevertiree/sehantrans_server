@@ -151,4 +151,32 @@ http://localhost:8080/api/product/search/normal?name=pname&keyword=keyword&mode=
 返回值 100 成功
 返回值 200 服务器失败
 
-## 订单管理
+## 购物车管理
+
+0. 获得购物车内容
+
+`
+http://localhost:8080/api/cart/modify?no=no&cart=cartString
+`
+
+其中`no`为客户ID，返回值 100 成功，返回值 200 服务器失败。
+
+1. 修改或者添加到购物车商品
+
+`
+http://localhost:8080/api/cart/modify?no=no&cart=cartString
+`
+
+其中`no`为客户ID，`cart`为需要加入购物车的商品ID的标准JSON格式。
+
+返回值 100 成功
+返回值 200 服务器失败
+
+2. 删除购物车内容
+
+`
+http://localhost:8080/api/cart/delete?no=no
+`
+
+返回值 100 成功
+返回值 200 服务器失败
