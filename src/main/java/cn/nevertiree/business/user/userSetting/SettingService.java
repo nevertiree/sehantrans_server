@@ -15,10 +15,10 @@ import java.util.Date;
 public class SettingService implements SettingServiceIntf{
 
     @Autowired
-    UserloginMapper userloginMapper;
+    private UserloginMapper userloginMapper;
 
     @Autowired
-    UserbaseMapper userbaseMapper;
+    private UserbaseMapper userbaseMapper;
 
     public Userbase getDetail(String no){
         return userbaseMapper.selectByPrimaryKey(no);

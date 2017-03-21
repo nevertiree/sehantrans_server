@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class LoginService implements LoginServiceIntf{
 
     @Autowired
-    UserloginMapper userloginMapper;
+    private UserloginMapper userloginMapper;
 
     public boolean hasLoginName(String name){
         return !(userloginMapper.hasLoginName(name)==0);

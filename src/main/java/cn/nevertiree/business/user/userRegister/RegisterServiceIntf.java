@@ -1,6 +1,5 @@
 package cn.nevertiree.business.user.userRegister;
 
-import cn.nevertiree.domain.Userlogin;
 import org.springframework.stereotype.Service;
 
 /**
