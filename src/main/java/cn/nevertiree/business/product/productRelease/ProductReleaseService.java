@@ -13,10 +13,9 @@ import org.springframework.stereotype.Service;
 public class ProductReleaseService implements ProductReleaseServiceIntf {
 
     @Autowired
-    ProductbaseMapper productbaseMapper;
+    private ProductbaseMapper productbaseMapper;
 
     public boolean createProduct(Productbase productbase){
         return (productbaseMapper.insert(productbase)==1);
-
     }
 }

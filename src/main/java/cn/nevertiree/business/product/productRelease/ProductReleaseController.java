@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -25,9 +24,9 @@ import java.util.Date;
 public class ProductReleaseController {
 
     @Autowired
-    UserbaseMapper userbaseMapper;
+    private UserbaseMapper userbaseMapper;
     @Autowired
-    ProductReleaseService productReleaseService;
+    private ProductReleaseService productReleaseService;
 
     @RequestMapping(value = "release" ,produces = "text/plain;charset=UTF-8")
     @ResponseBody
@@ -49,8 +48,6 @@ public class ProductReleaseController {
             return GenerateResponse.generateResponse(true,"100");
         }else
             return GenerateResponse.generateResponse(false,"200");
-
-
     }
 
 }

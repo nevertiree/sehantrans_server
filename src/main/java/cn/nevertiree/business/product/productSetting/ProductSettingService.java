@@ -4,7 +4,6 @@ import cn.nevertiree.business.dao.ProductbaseMapper;
 import cn.nevertiree.domain.Productbase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sun.security.pkcs11.P11TlsKeyMaterialGenerator;
 
 import java.math.BigDecimal;
 
@@ -17,15 +16,6 @@ public class ProductSettingService implements ProductSettingServiceIntf{
 
     @Autowired
     private ProductbaseMapper productbaseMapper;
-
-//    public boolean reflect(String methodName){
-//        try {
-//            Class.forName("ProductbaseMapper").getMethod(methodName);
-//        }catch (Exception e){
-//            e.printStackTrace();
-//            return false;
-//        }
-//    }
 
     public Productbase getBaseInfo(String no){
         try {

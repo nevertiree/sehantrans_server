@@ -19,4 +19,5 @@ public interface ProductSettingServiceIntf {
     //4. 修改商品类别
     boolean modifyCatalog(String no,String catalog);
 
+    boolean deleteProduct(String no);
 }
